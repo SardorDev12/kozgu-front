@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+// Colors
+$pr-color: #023047;
+$sc-color: #f4a261;
+$bg-color: #f8f9fa;
+$txt-color: #333333;
+$txt-muted: #6c757d;
+
+// Fonts
+$heading: "Playfair Display", serif;
+$body: "Open Sans", sans-serif;
+$logo: "Inter", sans-serif;
+$large: 32px;
+$medium: 20px;
+$small: 16px;
+
+// Spacing
+$spacing-xxs: 4px;
+$spacing-xs: 8px;
+$spacing-sm: 12px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+$spacing-xxl: 40px;
+
+$container-padding: 16px;
+$max-width: 1400px;
+$gap: 16px;
+
+// Shapes
+$border: 5px;

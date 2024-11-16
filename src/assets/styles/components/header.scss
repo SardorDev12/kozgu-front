@@ -1,0 +1,38 @@
+@import "../abstracts/vars";
+@import "../abstracts/mixins";
+
+.header {
+  .header-content {
+    @include flex(row, space-between, center);
+    .logo a {
+      text-decoration: none;
+      color: $pr-color;
+      font-weight: 600;
+      font-size: $large;
+      font-family: $logo;
+    }
+    .navbar {
+      @include flex(row, space-between, center);
+
+      .items {
+        @include flex(row, space-between, center);
+        list-style-type: none;
+        gap: $gap * 3;
+        padding: 0 $gap * 10;
+        li > a {
+          font-family: $logo;
+          text-decoration: none;
+          color: $pr-color;
+
+          &:hover {
+            color: $sc-color;
+          }
+        }
+      }
+    }
+
+    .login-btn {
+      @include button($bg-color, $pr-color);
+    }
+  }
+}

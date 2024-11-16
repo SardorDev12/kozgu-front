@@ -1,0 +1,58 @@
+@import "./vars";
+
+@mixin container-style($max-width: $max-width, $padding: $container-padding) {
+  width: 100%;
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 0 $padding;
+}
+
+@mixin flex($direction: row, $justify: flex-start, $align: stretch) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin center-absolute() {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// Responsive
+@mixin device($device) {
+  @if $device == mobile {
+    @media (max-width: 768px) {
+      @content;
+    }
+  } @else if $device == tablet {
+    @media (max-width: 1024px) {
+      @content;
+    }
+  } @else if $device == desktop {
+    @media (min-width: 1025px) {
+      @content;
+    }
+  }
+}
+
+// Elements
+@mixin button($bg-color, $text-color, $padding: 10px 20px, $radius: 5px) {
+  display: inline-block;
+  background-color: $bg-color;
+  color: $text-color;
+  padding: $padding;
+  border-radius: $radius;
+  border: 1px solid $pr-color;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-weight: 600;
+
+  &:hover {
+    border: 1px solid $sc-color;
+    color: $sc-color;
+  }
+}
