@@ -1,12 +1,44 @@
-@import "../styles/abstracts/mixins";
-@import "../styles/abstracts/vars";
+@use "../styles/abstracts/mixins.scss";
+@use "../styles/abstracts/vars.scss";
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: $bg-color;
+  background-color: vars.$bg-color;
+  line-height: 1.6;
+  font-family: vars.$body;
 }
 
 .container {
-  @include container-style();
+  width: 100%;
+  max-width: vars.$max-width;
+  margin: 0 auto;
+}
+
+a {
+  font-family: vars.$logo;
+  text-decoration: none;
+  color: vars.$pr-color;
+
+  &:hover {
+    color: vars.$sc-color;
+  }
+}
+
+ul,
+ol {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.global-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
 }

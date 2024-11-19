@@ -1,10 +1,10 @@
-@import "./vars";
+@use "./vars.scss";
 
 @mixin container-style($max-width: $max-width, $padding: $container-padding) {
   width: 100%;
-  max-width: $max-width;
+  max-width: vars.$max-width;
   margin: 0 auto;
-  padding: 0 $padding;
+  padding: 0 vars.$padding;
 }
 
 @mixin flex($direction: row, $justify: flex-start, $align: stretch) {
@@ -39,20 +39,27 @@
 }
 
 // Elements
-@mixin button($bg-color, $text-color, $padding: 10px 20px, $radius: 5px) {
+@mixin button(
+  $bg-color,
+  $txt,
+  $border,
+  $hover-bg: none,
+  $hover-border: none,
+  $hover-txt: none
+) {
+  background-color: $bg_color;
+  border-radius: vars.$radius;
+  color: $txt;
+  padding: vars.$spacing-xs vars.$spacing-md;
   display: inline-block;
-  background-color: $bg-color;
-  color: $text-color;
-  padding: $padding;
-  border-radius: $radius;
-  border: 1px solid $pr-color;
+  border: 1px solid $border;
   text-decoration: none;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.1s;
   font-weight: 600;
-
   &:hover {
-    border: 1px solid $sc-color;
-    color: $sc-color;
+    background-color: $hover-bg;
+    border: 1px solid $hover-border;
+    color: $hover-txt;
   }
 }

@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { FaUser } from "react-icons/fa";
 import "../assets/styles/components/header.scss";
 
 const Header = () => {
@@ -18,6 +19,7 @@ const Header = () => {
             </li>
           </ul>
           <button className="login-btn" type="button">
+            <FaUser />
             KIRISH
           </button>
         </nav>

@@ -1,0 +1,68 @@
+@use "../abstracts/vars";
+@use "../abstracts/mixins";
+
+.footer {
+  padding: vars.$spacing-sm 0;
+  .footer-content {
+    @include mixins.flex(row, space-between, start);
+    .social-network {
+      .form {
+        @include mixins.flex(row, space-between, center);
+        gap: vars.$gap;
+        input {
+          @include mixins.button(
+            vars.$bg-color,
+            vars.$pr-color,
+            vars.$pr-color
+          );
+          cursor: text;
+          padding-left: 0.5rem;
+          font-weight: 200;
+
+          &::placeholder {
+            font-family: vars.$body;
+            font-weight: 200;
+          }
+        }
+        button {
+          @include mixins.button(
+            vars.$pr-color,
+            vars.$bg-color,
+            vars.$pr-color
+          );
+
+          &:hover {
+            // background-color: darken(vars.$pr-color, 5%);
+            // border-color: darken(vars.$pr-color, 5%);
+            background-color: adjust-color(vars.$pr-color, $lightness: 10%);
+            background-color: adjust-color(vars.$pr-color, $lightness: 10%);
+          }
+        }
+      }
+      .social-networks {
+        @include mixins.flex(row, space-between, center);
+        margin: 1rem 0;
+        li {
+          a > svg {
+            font-size: 1.5rem;
+          }
+        }
+      }
+    }
+    .foot-nav {
+      @include mixins.flex(column, space-between, end);
+      .logo a {
+        text-decoration: none;
+        color: vars.$pr-color;
+        font-weight: 600;
+        font-size: vars.$large;
+        font-family: vars.$logo;
+      }
+      .foot-nav_items {
+        @include mixins.flex(row, space-between, center);
+        list-style-type: none;
+        gap: vars.$gap * 3;
+      }
+    }
+  }
+}

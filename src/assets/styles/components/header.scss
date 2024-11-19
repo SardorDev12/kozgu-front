@@ -1,38 +1,48 @@
-@import "../abstracts/vars";
-@import "../abstracts/mixins";
+@use "../abstracts/vars.scss";
+@use "../abstracts/mixins.scss";
 
 .header {
+  padding: vars.$spacing-sm 0;
   .header-content {
-    @include flex(row, space-between, center);
+    @include mixins.flex(row, space-between, center);
     .logo a {
       text-decoration: none;
-      color: $pr-color;
+      color: vars.$pr-color;
       font-weight: 600;
-      font-size: $large;
-      font-family: $logo;
+      font-size: vars.$large;
+      font-family: vars.$logo;
     }
     .navbar {
-      @include flex(row, space-between, center);
+      @include mixins.flex(row, space-between, center);
 
       .items {
-        @include flex(row, space-between, center);
+        @include mixins.flex(row, space-between, center);
         list-style-type: none;
-        gap: $gap * 3;
-        padding: 0 $gap * 10;
+        gap: vars.$gap * 3;
+        padding: 0 vars.$gap * 10;
         li > a {
-          font-family: $logo;
+          font-family: vars.$logo;
           text-decoration: none;
-          color: $pr-color;
+          color: vars.$pr-color;
 
           &:hover {
-            color: $sc-color;
+            color: vars.$sc-color;
           }
         }
       }
     }
 
     .login-btn {
-      @include button($bg-color, $pr-color);
+      @include mixins.button(
+        vars.$bg-color,
+        vars.$pr-color,
+        vars.$pr-color,
+        vars.$bg-color,
+        vars.$sc-color,
+        vars.$sc-color
+      );
+      @include mixins.flex(row, space-between, center);
+      gap: vars.$gap * 0.5;
     }
   }
 }

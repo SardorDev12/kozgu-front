@@ -5,11 +5,15 @@ import Header from "../components/Header";
 const Global = () => {
   return (
     <div className="global-layout">
-      <Header />
-      <main>
+      <header className="global-header">
+        <Header />
+      </header>
+      <main className="main-content">
         <Outlet />
       </main>
-      <Footer />
+      <footer className="global-footer">
+        <Footer />
+      </footer>
     </div>
   );
 };
