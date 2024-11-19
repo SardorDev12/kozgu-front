@@ -1,5 +1,11 @@
+import Search from "../components/Search";
+
 const Articles = () => {
-  return <div>Articles</div>;
+  return (
+    <>
+      <Search />
+    </>
+  );
 };
 
 export default Articles;

@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
-const Global = () => {
+const GlobalLayout = () => {
   return (
     <div className="global-layout">
       <header className="global-header">
@@ -18,4 +18,4 @@ const Global = () => {
   );
 };
 
-export default Global;
+export default GlobalLayout;

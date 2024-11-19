@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Global from "./layouts/Global";
+import Global from "./layouts/GlobalLayout";
 import Home from "./pages/Home";
 import Articles from "./pages/Articles";
 

@@ -1,5 +1,6 @@
 @use "../abstracts/vars";
 @use "../abstracts/mixins";
+@use "sass:color";
 
 .footer {
   padding: vars.$spacing-sm 0;
@@ -21,7 +22,7 @@
 
           &::placeholder {
             font-family: vars.$body;
-            font-weight: 200;
+            font-weight: 400;
           }
         }
         button {
@@ -32,10 +33,8 @@
           );
 
           &:hover {
-            // background-color: darken(vars.$pr-color, 5%);
-            // border-color: darken(vars.$pr-color, 5%);
-            background-color: adjust-color(vars.$pr-color, $lightness: 10%);
-            background-color: adjust-color(vars.$pr-color, $lightness: 10%);
+            background-color: color.adjust(vars.$pr-color, $lightness: 10%);
+            background-color: color.adjust(vars.$pr-color, $lightness: 10%);
           }
         }
       }
