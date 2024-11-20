@@ -1,12 +1,7 @@
 import AppRouter from "./router";
-import { DataProvider } from "./layouts/GlobalContext";
 
 const App = () => {
-  return (
-    <DataProvider>
-      <AppRouter />;
-    </DataProvider>
-  );
+  return <AppRouter />;
 };
 
 export default App;

@@ -14,7 +14,7 @@ const Footer = () => {
       <div className="container footer-content">
         <div className="social-network">
           <form className="form">
-            <input type="email" placeholder="Emailingizni yozing." required />
+            <input type="email" placeholder="Emailingizni yozing" required />
             <button type="submit">OBUNA</button>
           </form>
           <ul className="social-networks">

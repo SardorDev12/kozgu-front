@@ -1,6 +1,7 @@
 @use "../abstracts/vars";
 @use "../abstracts/mixins";
 @use "sass:color";
+@use "sass:list";
 
 .categs-search {
   @include mixins.flex(row, space-between, center);
@@ -11,14 +12,14 @@
     width: 80%;
     @include mixins.flex(row, space-between, center);
 
-    @for $i from 1 through length(vars.$colors) {
-      li:nth-child(#{length(vars.$colors)}n + #{$i}) {
+    @for $i from 1 through list.length(vars.$colors) {
+      li:nth-child(#{list.length(vars.$colors)}n + #{$i}) {
         @include mixins.button(
           vars.$bg-color,
           vars.$pr-color,
-          nth(vars.$colors, $i),
-          nth(vars.$colors, $i),
-          nth(vars.$colors, $i),
+          list.nth(vars.$colors, $i),
+          list.nth(vars.$colors, $i),
+          list.nth(vars.$colors, $i),
           vars.$bg-color
         );
         padding: vars.$spacing-xxs vars.$spacing-lg;

@@ -1,21 +1,27 @@
-import { useEffect } from "react";
-import { useData } from "../layouts/GlobalContext";
+import { useState, useEffect } from "react";
+import { getReq } from "../services/apiService";
 
 const Search = () => {
-  const { data, fetchData } = useData([]);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetchData("categories");
+    const fetchData = async () => {
+      try {
+        const res = await getReq("categories/");
+        setData(res);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
   }, []);
-
-  const categories = data.categories || [];
 
   return (
     <div className="container categs-search">
       <ul className="categories">
         <li className="all categ-item">Barchasi</li>
 
-        {categories.map((item, index) => (
+        {data.map((item, index) => (
           <li className="categ-item" key={index}>
             {item.name}
           </li>
