@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { getReq } from "../services/apiService";
 import "../assets/styles/components/topArticle.scss";
-
+import { FaPencil } from "react-icons/fa6";
+import { FaCalendar } from "react-icons/fa";
+import { IoTime } from "react-icons/io5";
+import { NavLink } from "react-router-dom";
 const TopArticle = () => {
   const [data, setData] = useState([]);
 
@@ -22,7 +25,7 @@ const TopArticle = () => {
 
   return (
     <article className="container top-article">
-      <h3 className="section-h3">{data.category}</h3>
+      <h3 className="section-title">{data.category}</h3>
       <div className="article-content">
         <div className="text-div">
           <h2 className="article-title">{data.title}</h2>
@@ -35,11 +38,18 @@ const TopArticle = () => {
             </button>
           </div>
           <div className="article-metadata">
-            <div className="author">{data.author}</div>
+            <NavLink to="/author/" className="author" title="Author Page">
+              <FaPencil />
+              {data.author}
+            </NavLink>
             <div className="published-date">
+              <FaCalendar />
               {data.published_at?.substring(0, 10)}
             </div>
-            <div className="read-time">{data.read_time}</div>
+            <div className="read-time">
+              <IoTime />
+              {data.read_time}
+            </div>
           </div>
         </div>
         <div className="image-div">

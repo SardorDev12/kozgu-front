@@ -4,7 +4,10 @@
 
 .top-article {
   padding: vars.$spacing-md 0;
-
+  .section-title {
+    text-decoration: underline;
+    color: vars.$pr-color;
+  }
   .article-content {
     @include mixins.flex(row, space-between, start);
     gap: vars.$gap * 5;
@@ -32,6 +35,20 @@
         @include mixins.flex(row, space-between, center);
         text-align: start;
         margin-top: vars.$spacing-md;
+
+        div,
+        a.author {
+          @include mixins.flex(row, space-between, center);
+          gap: vars.$gap * 0.5;
+          color: vars.$txt-muted;
+          svg {
+            color: vars.$txt-muted;
+          }
+        }
+
+        a.author:hover {
+          text-decoration: underline;
+        }
       }
     }
 
