@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getReq } from "../services/apiService";
+import "../assets/styles/components/topArticle.scss";
 
 const TopArticle = () => {
   const [data, setData] = useState([]);
@@ -17,26 +18,32 @@ const TopArticle = () => {
     fetchData();
   }, []);
 
+  console.log(data);
+
   return (
     <article className="container top-article">
-      <h3 className="section-h3">{data.title}</h3>
-      <div className="div">
+      <h3 className="section-h3">{data.category}</h3>
+      <div className="article-content">
         <div className="text-div">
-          <h3 className="article-h3"></h3>
+          <h2 className="article-title">{data.title}</h2>
           <div className="article-div">
-            <div className="article-content__text">{data.content}</div>
+            <div className="article-content__text">
+              {data.content?.substring(0, 400) + "..."}
+            </div>
             <button type="button" className="readmore-btn">
               Read More
             </button>
           </div>
           <div className="article-metadata">
             <div className="author">{data.author}</div>
-            <div className="published-date">{data.created_date}</div>
-            <div className="read-time"></div>
+            <div className="published-date">
+              {data.published_at?.substring(0, 10)}
+            </div>
+            <div className="read-time">{data.read_time}</div>
           </div>
         </div>
         <div className="image-div">
-          <img src="" alt="article-image" />
+          <img src={data.article_pic} alt="article-image" />
         </div>
       </div>
     </article>

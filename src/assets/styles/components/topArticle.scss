@@ -1,0 +1,43 @@
+@use "../abstracts/mixins";
+@use "sass:color";
+@use "../abstracts/vars";
+
+.top-article {
+  padding: vars.$spacing-md 0;
+
+  .article-content {
+    @include mixins.flex(row, space-between, start);
+    gap: vars.$gap * 5;
+
+    .text-div {
+      flex: 1;
+      min-width: 50%;
+      @include mixins.flex(column, space-between, start);
+
+      .article-title {
+        margin: 0 0 0.5rem;
+      }
+
+      .article-div .readmore-btn {
+        @include mixins.button(vars.$pr-color, vars.$bg-color, vars.$pr-color);
+        &:hover {
+          background-color: color.adjust(vars.$pr-color, $lightness: 10%);
+          background-color: color.adjust(vars.$pr-color, $lightness: 10%);
+        }
+        margin: vars.$spacing-sm 0;
+      }
+
+      .article-metadata {
+        width: 80%;
+        @include mixins.flex(row, space-between, center);
+        text-align: start;
+        margin-top: vars.$spacing-md;
+      }
+    }
+
+    .image-div {
+      overflow: hidden;
+      @include mixins.flex(column, center, end);
+    }
+  }
+}
