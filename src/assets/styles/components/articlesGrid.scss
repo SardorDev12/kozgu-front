@@ -13,7 +13,7 @@
     padding: vars.$spacing-xxs;
 
     &:hover {
-      background-color: rgb(206, 206, 206);
+      background-color: vars.$hover-bg;
     }
 
     .article-img {

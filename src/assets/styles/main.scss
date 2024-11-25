@@ -19,10 +19,6 @@ a {
   font-family: vars.$logo;
   text-decoration: none;
   color: vars.$pr-color;
-
-  &:hover {
-    color: vars.$sc-color;
-  }
 }
 
 ul,

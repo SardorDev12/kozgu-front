@@ -12,10 +12,14 @@ const Header = () => {
         <nav className="navbar">
           <ul className="items">
             <li>
-              <NavLink to="/">Bosh sahifa</NavLink>
+              <NavLink className={"nav-item"} to="/">
+                Bosh sahifa
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/articles">Maqolalar</NavLink>
+              <NavLink className={"nav-item"} to="/articles">
+                Maqolalar
+              </NavLink>
             </li>
           </ul>
           <button className="login-btn" type="button">

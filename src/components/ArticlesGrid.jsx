@@ -3,6 +3,7 @@ import { getReq } from "../services/apiService";
 import { FaCalendar } from "react-icons/fa";
 import { IoTime } from "react-icons/io5";
 import "../assets/styles/components/articlesGrid.scss";
+import { Link } from "react-router-dom";
 
 const ArticlesGrid = ({ amount }) => {
   const [data, setData] = useState([]);
@@ -34,7 +35,11 @@ const ArticlesGrid = ({ amount }) => {
       <div className="articles-grid__content">
         {data.map((article) => {
           return (
-            <div className="article" key={article.id}>
+            <Link
+              className="article"
+              key={article.id}
+              to={`/articles/${article.id}`}
+            >
               <div className="article-img">
                 <p className="article-category">{article.category}</p>
                 <img src={article.article_pic} alt={article.title} />
@@ -57,7 +62,7 @@ const ArticlesGrid = ({ amount }) => {
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>

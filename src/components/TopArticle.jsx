@@ -21,8 +21,6 @@ const TopArticle = () => {
     fetchData();
   }, []);
 
-  console.log(data);
-
   return (
     <article className="container top-article">
       <h3 className="section-title">{data.category}</h3>
