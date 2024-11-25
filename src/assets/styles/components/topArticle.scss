@@ -4,10 +4,7 @@
 
 .top-article {
   padding: vars.$spacing-md 0;
-  .section-title {
-    text-decoration: underline;
-    color: vars.$pr-color;
-  }
+
   .article-content {
     @include mixins.flex(row, space-between, start);
     gap: vars.$gap * 5;

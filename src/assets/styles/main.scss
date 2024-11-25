@@ -48,3 +48,9 @@ img {
   max-height: 100%;
   object-fit: contain;
 }
+
+.section-title {
+  text-decoration: underline;
+  color: vars.$pr-color;
+  margin-top: vars.$spacing-xxl;
+}

@@ -14,6 +14,12 @@
   align-items: $align;
 }
 
+@mixin grid($columns, $gap) {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $gap;
+}
+
 @mixin center-absolute() {
   position: absolute;
   top: 50%;

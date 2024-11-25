@@ -1,0 +1,25 @@
+@use "../abstracts/mixins";
+@use "../abstracts/vars";
+
+.articles-grid__content {
+  @include mixins.grid(3, vars.$gap * 2);
+  .article {
+    @include mixins.flex(column, start, start);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      background-color: rgb(206, 206, 206);
+    }
+
+    .article-cont {
+      .article-cont__metadata {
+        @include mixins.flex(row, start, center);
+        gap: vars.$gap * 5;
+        div {
+          @include mixins.flex(row, start, center);
+        }
+      }
+    }
+  }
+}
