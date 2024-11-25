@@ -36,7 +36,7 @@ const ArticlesGrid = ({ amount }) => {
           return (
             <div className="article" key={article.id}>
               <div className="article-img">
-                <p className="article-category"></p>
+                <p className="article-category">{article.category}</p>
                 <img src={article.article_pic} alt={article.title} />
               </div>
               <div className="article-cont">
@@ -53,7 +53,7 @@ const ArticlesGrid = ({ amount }) => {
                   </div>
                   <div>
                     <IoTime />
-                    <p className="read-duration">{article.read_time}</p>
+                    <p className="read-duration">{article.read_time} daqiqa</p>
                   </div>
                 </div>
               </div>

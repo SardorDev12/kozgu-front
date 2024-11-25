@@ -21,6 +21,8 @@ const TopArticle = () => {
     fetchData();
   }, []);
 
+  console.log(data);
+
   return (
     <article className="container top-article">
       <h3 className="section-title">{data.category}</h3>
@@ -46,7 +48,7 @@ const TopArticle = () => {
             </div>
             <div className="read-time">
               <IoTime />
-              {data.read_time}
+              {data.read_time} daqiqa
             </div>
           </div>
         </div>

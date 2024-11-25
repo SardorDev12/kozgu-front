@@ -1,15 +1,33 @@
 @use "../abstracts/mixins";
 @use "../abstracts/vars";
+@use "sass:color";
+@use "sass:list";
 
 .articles-grid__content {
   @include mixins.grid(3, vars.$gap * 2);
+  margin-bottom: vars.$spacing-lg;
   .article {
     @include mixins.flex(column, start, start);
     cursor: pointer;
     transition: all 0.3s ease-in-out;
+    padding: vars.$spacing-xxs;
 
     &:hover {
       background-color: rgb(206, 206, 206);
+    }
+
+    .article-img {
+      position: relative;
+
+      .article-category {
+        position: absolute;
+        top: -0.5rem;
+        left: 0.5rem;
+        z-index: 99;
+        color: red;
+        @include mixins.button(vars.$bg-color, vars.$pr-color, vars.$colors);
+        padding: vars.$spacing-xxs vars.$spacing-lg;
+      }
     }
 
     .article-cont {
@@ -18,6 +36,8 @@
         gap: vars.$gap * 5;
         div {
           @include mixins.flex(row, start, center);
+          color: vars.$txt-muted;
+          gap: vars.$gap * 0.5;
         }
       }
     }

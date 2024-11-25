@@ -10,7 +10,8 @@
   .categories {
     display: block;
     width: 80%;
-    @include mixins.flex(row, space-between, center);
+    @include mixins.flex(row, start, center);
+    gap: vars.$gap * 2;
 
     @for $i from 1 through list.length(vars.$colors) {
       li:nth-child(#{list.length(vars.$colors)}n + #{$i}) {
@@ -57,5 +58,11 @@
         background-color: color.adjust(vars.$pr-color, $lightness: 10%);
       }
     }
+  }
+}
+
+.categs-search.tags {
+  .categories {
+    width: 100%;
   }
 }
