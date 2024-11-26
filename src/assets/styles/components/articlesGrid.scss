@@ -4,20 +4,29 @@
 @use "sass:list";
 
 .articles-grid__content {
-  @include mixins.grid(3, vars.$gap * 2);
+  @include mixins.grid(4, vars.$gap * 1);
   margin-bottom: vars.$spacing-lg;
+
   .article {
-    @include mixins.flex(column, start, start);
+    @include mixins.flex(column, space-between, start);
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     padding: vars.$spacing-xxs;
 
+    border: 1px solid #e0e0e0; /* Light border */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border-radius: 8px; /* Rounded corners */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
     &:hover {
-      background-color: vars.$hover-bg;
+      transform: translateY(-5px); /* Lift effect on hover */
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Stronger shadow */
     }
 
     .article-img {
       position: relative;
+      border-radius: 8px 8px 0 0;
+      overflow: hidden;
 
       .article-category {
         position: absolute;
@@ -31,13 +40,31 @@
     }
 
     .article-cont {
+      width: 100%;
+      @include mixins.flex(column, space-between, start);
+
+      .article-cont__title {
+        font-size: 1.2rem; /* Adjust the size */
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+      }
+
+      .article-cont__text {
+        font-size: 0.95rem; /* Subtle adjustment */
+        line-height: 1.5; /* Better readability */
+        color: vars.$txt-muted; /* Muted text color */
+      }
+
       .article-cont__metadata {
-        @include mixins.flex(row, start, center);
+        @include mixins.flex(row, space-between, center);
+        margin-top: vars.$spacing-md;
         gap: vars.$gap * 5;
         div {
           @include mixins.flex(row, start, center);
           color: vars.$txt-muted;
-          gap: vars.$gap * 0.5;
+          gap: vars.$gap * 0.2;
+          align-items: center;
+          font-size: 0.85rem;
         }
       }
     }

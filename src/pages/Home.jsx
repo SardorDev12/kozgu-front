@@ -8,7 +8,7 @@ const Home = () => {
     <>
       <Search />
       <TopArticle />
-      <ArticlesGrid amount={6} />
+      <ArticlesGrid amount={8} />
       <Tags />
     </>
   );

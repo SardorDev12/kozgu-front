@@ -4,7 +4,8 @@ import "../assets/styles/components/topArticle.scss";
 import { FaPencil } from "react-icons/fa6";
 import { FaCalendar } from "react-icons/fa";
 import { IoTime } from "react-icons/io5";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+
 const TopArticle = () => {
   const [data, setData] = useState([]);
 
@@ -31,9 +32,9 @@ const TopArticle = () => {
             <div className="article-content__text">
               {data.content?.substring(0, 400) + "..."}
             </div>
-            <button type="button" className="readmore-btn">
+            <Link className="readmore-btn" to={`/articles/${data.id}`}>
               Read More
-            </button>
+            </Link>
           </div>
           <div className="article-metadata">
             <NavLink to="/author/" className="author" title="Author Page">

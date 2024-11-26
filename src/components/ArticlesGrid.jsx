@@ -47,7 +47,7 @@ const ArticlesGrid = ({ amount }) => {
               <div className="article-cont">
                 <h3 className="article-cont__title">{article.title}</h3>
                 <p className="article-cont__text">
-                  {article.content?.substring(0, 100) + "..."}
+                  {article.content?.substring(0, 200) + "..."}
                 </p>
                 <div className="article-cont__metadata">
                   <div>

@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import "../assets/styles/components/header.scss";
 
@@ -7,7 +7,7 @@ const Header = () => {
     <header className=" header" id="header">
       <div className="container header-content">
         <div className="logo">
-          <a href="#header">KO'ZGU</a>
+          <Link to="/">KO'ZGU</Link>
         </div>
         <nav className="navbar">
           <ul className="items">
