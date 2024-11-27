@@ -4,9 +4,8 @@ import { RiInstagramFill } from "react-icons/ri";
 import { FaFacebook } from "react-icons/fa";
 import { FaPinterest } from "react-icons/fa";
 import { IoLogoYoutube } from "react-icons/io";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "../assets/styles/components/footer.scss";
-
 const Footer = () => {
   return (
     <footer className="footer" id="footer">
@@ -47,7 +46,7 @@ const Footer = () => {
         </div>
         <div className="foot-nav">
           <div className="logo">
-            <a href="#header">KO'ZGU</a>
+            <Link to={"/"}>KO'ZGU</Link>
           </div>
           <ul className="foot-nav_items">
             <li>

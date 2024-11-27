@@ -44,6 +44,9 @@
         li {
           a > svg {
             font-size: 1.5rem;
+            &:hover {
+              color: vars.$sc-color;
+            }
           }
         }
       }
@@ -61,6 +64,11 @@
         @include mixins.flex(row, space-between, center);
         list-style-type: none;
         gap: vars.$gap * 3;
+        li > a {
+          &:hover {
+            color: vars.$sc-color;
+          }
+        }
       }
     }
   }

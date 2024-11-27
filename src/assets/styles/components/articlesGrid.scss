@@ -13,14 +13,14 @@
     transition: all 0.3s ease-in-out;
     padding: vars.$spacing-xxs;
 
-    border: 1px solid #e0e0e0; /* Light border */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    border-radius: 8px; /* Rounded corners */
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 
     &:hover {
-      transform: translateY(-5px); /* Lift effect on hover */
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Stronger shadow */
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
     }
 
     .article-img {
@@ -44,15 +44,15 @@
       @include mixins.flex(column, space-between, start);
 
       .article-cont__title {
-        font-size: 1.2rem; /* Adjust the size */
+        font-size: 1.2rem;
         font-weight: bold;
         margin-bottom: 0.5rem;
       }
 
       .article-cont__text {
-        font-size: 0.95rem; /* Subtle adjustment */
-        line-height: 1.5; /* Better readability */
-        color: vars.$txt-muted; /* Muted text color */
+        font-size: 0.95rem;
+        line-height: 1.5;
+        color: vars.$txt-muted;
       }
 
       .article-cont__metadata {

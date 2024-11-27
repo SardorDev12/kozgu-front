@@ -31,7 +31,11 @@ const ArticlesGrid = ({ amount }) => {
 
   return (
     <div className="container articles-grid">
-      <h3 className="section-title">So'ngi maqolalar</h3>
+      <h3>
+        <Link className="section-title" to={"/articles"}>
+          So'ngi maqolalar
+        </Link>
+      </h3>
       <div className="articles-grid__content">
         {data.map((article) => {
           return (
