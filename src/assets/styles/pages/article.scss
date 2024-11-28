@@ -1,0 +1,98 @@
+@use "../abstracts/mixins";
+@use "sass:color";
+@use "sass:list";
+@use "../abstracts/vars";
+
+.detailed_article {
+  max-width: 60%;
+  .article-metadata {
+    width: 100%;
+    @include mixins.flex(row, center, center);
+    gap: vars.$gap * 5;
+    text-align: center;
+    margin: vars.$spacing-xxl auto vars.$spacing-md;
+
+    div,
+    a.author {
+      @include mixins.flex(row, space-between, center);
+      gap: vars.$gap * 0.5;
+      color: vars.$txt-muted;
+      svg {
+        color: vars.$txt-muted;
+      }
+    }
+
+    a.author:hover {
+      text-decoration: underline;
+    }
+  }
+  .underline {
+    width: 50%;
+  }
+
+  .article-title {
+    text-align: center;
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  .article-img {
+    @include mixins.article;
+    text-align: center;
+    max-height: 250px;
+    overflow: hidden;
+    object-position: center;
+    margin: vars.$spacing-xl auto;
+  }
+
+  .article-content {
+    max-width: 60%;
+    margin: 0 auto;
+    line-height: 2rem;
+  }
+
+  .tags {
+    @include mixins.article;
+    display: block;
+    @include mixins.flex(row, start, center);
+    gap: vars.$gap * 2;
+
+    @for $i from 1 through list.length(vars.$colors) {
+      li:nth-child(#{list.length(vars.$colors)}n + #{$i}) {
+        @include mixins.button(
+          vars.$bg-color,
+          vars.$pr-color,
+          list.nth(vars.$colors, $i),
+          list.nth(vars.$colors, $i),
+          list.nth(vars.$colors, $i),
+          vars.$bg-color
+        );
+        padding: vars.$spacing-xxs vars.$spacing-lg;
+      }
+    }
+  }
+
+  .article-comment {
+    @include mixins.article;
+
+    .commit-area {
+      width: 100%;
+      height: 100px;
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      font-family: Arial, sans-serif;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      resize: vertical;
+      outline: none;
+      transition: all 0.3s ease;
+      resize: none;
+    }
+    .submit-btn {
+      @include mixins.button(vars.$pr-color, vars.$bg-color, vars.$pr-color);
+      float: right;
+      margin: vars.$spacing-sm 0;
+    }
+  }
+}

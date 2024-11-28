@@ -3,6 +3,10 @@
 
 .header {
   padding: vars.$spacing-sm 0;
+  position: fixed;
+  width: 100%;
+  background-color: vars.$bg-color;
+  z-index: 2;
   .header-content {
     @include mixins.flex(row, space-between, center);
     .logo a {

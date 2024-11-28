@@ -4,6 +4,8 @@ import Home from "./pages/Home";
 import Articles from "./pages/Articles";
 import AuthorProfile from "./pages/AuthorProfile";
 import Article from "./pages/Article";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +27,14 @@ const router = createBrowserRouter([
       {
         path: "/author",
         element: <AuthorProfile />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
       },
     ],
   },

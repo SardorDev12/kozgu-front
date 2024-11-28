@@ -69,3 +69,8 @@
     color: $hover-txt;
   }
 }
+
+@mixin article {
+  width: 60%;
+  margin: 0 auto;
+}
