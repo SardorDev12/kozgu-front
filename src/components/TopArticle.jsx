@@ -5,6 +5,7 @@ import { FaPencil } from "react-icons/fa6";
 import { FaCalendar } from "react-icons/fa";
 import { IoTime } from "react-icons/io5";
 import { Link, NavLink } from "react-router-dom";
+import SectionTitle from "../components/SectionTitle.jsx";
 
 const TopArticle = () => {
   const [data, setData] = useState([]);
@@ -24,7 +25,7 @@ const TopArticle = () => {
 
   return (
     <article className="container top-article">
-      <h3 className="section-title">{data.category}</h3>
+      <SectionTitle addres="articles" title={data.category} />
       <div className="article-content">
         <div className="text-div">
           <h2 className="article-title">{data.title}</h2>

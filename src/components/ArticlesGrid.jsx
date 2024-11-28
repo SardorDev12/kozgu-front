@@ -4,6 +4,7 @@ import { FaCalendar } from "react-icons/fa";
 import { IoTime } from "react-icons/io5";
 import "../assets/styles/components/articlesGrid.scss";
 import { Link } from "react-router-dom";
+import SectionTitle from "../components/SectionTitle.jsx";
 
 const ArticlesGrid = ({ amount }) => {
   const [data, setData] = useState([]);
@@ -31,11 +32,7 @@ const ArticlesGrid = ({ amount }) => {
 
   return (
     <div className="container articles-grid">
-      <h3>
-        <Link className="section-title" to={"/articles"}>
-          So'ngi maqolalar
-        </Link>
-      </h3>
+      <SectionTitle addres="articles" title="So'ngi maqolalar" />
       <div className="articles-grid__content">
         {data.map((article) => {
           return (
