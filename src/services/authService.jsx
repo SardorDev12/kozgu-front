@@ -1,49 +1,61 @@
-import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
 
-const AuthContext = createContext();
 const API = "http://127.0.0.1:8000/api/";
 
-export const AuthProvider = ({ children }) => {
-  const [authTokens, setAuthTokens] = useState(() => {
-    return localStorage.getItem("authTokens")
-      ? JSON.parse(localStorage.getItem("authTokens"))
-      : null;
-  });
-  const [user, setUser] = useState(null);
+const register = (username, email, password) => {
+  return axios.post(API + "register/", { username, email, password });
+};
 
-  useEffect(() => {
-    if (authTokens) {
-      axios
-        .get(`${API}home/`, {
-          headers: {
-            Authorization: `Bearer ${authTokens.access}`,
-          },
-        })
-        .then((response) => {
-          setUser(response.data);
-        });
+const login = async (username, password) => {
+  try {
+    const response = await axios.post(API + "token/", { username, password });
+    const { access, refresh } = response.data;
+
+    if (access) {
+      const userInfoResponse = await axios.get(API + "user/", {
+        headers: { Authorization: `Bearer ${access}` },
+      });
+
+      const userData = {
+        access,
+        refresh,
+        username: userInfoResponse.data.username,
+        email: userInfoResponse.data.email,
+        first_name: userInfoResponse.data.first_name,
+        last_name: userInfoResponse.data.last_name,
+      };
+
+      localStorage.setItem("user", JSON.stringify(userData));
+      return userData;
     }
-  }, [authTokens]);
-
-  const login = (tokens) => {
-    setAuthTokens(tokens);
-    localStorage.setItem("authTokens", JSON.stringify(tokens));
-  };
-
-  const logout = () => {
-    setAuthTokens(null);
-    setUser(null);
-    localStorage.removeItem("authTokens");
-  };
-
-  return (
-    <AuthContext.Provider value={{ user, login, logout, authTokens }}>
-      {children}
-    </AuthContext.Provider>
-  );
+  } catch (error) {
+    console.error("Login error:", error);
+    throw error;
+  }
 };
 
-export const useAuth = () => {
-  return React.useContext(AuthContext);
+const logout = () => {
+  localStorage.removeItem("user");
+  localStorage.removeItem("authTokens");
 };
+
+const getCurrentUser = async () => {
+  try {
+    const user = JSON.parse(localStorage.getItem("user")); // Get stored user data
+    if (!user || !user.access) throw new Error("Access token not found");
+
+    const response = await fetch(`${API}user/`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user.access}`, // Correct access token usage
+      },
+    });
+
+    if (!response.ok) throw new Error("Failed to fetch user info");
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching user info:", error.message);
+  }
+};
+
+export default { register, login, logout, getCurrentUser };

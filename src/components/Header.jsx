@@ -1,10 +1,27 @@
 import { Link, NavLink } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
+import authService from "../services/authService";
 import "../assets/styles/components/header.scss";
+import { useState, useEffect } from "react";
 
 const Header = () => {
+  const [currentUser, setCurrentUser] = useState(null);
+
+  useEffect(() => {
+    const user = authService.getCurrentUser();
+    console.log(user);
+    if (user) {
+      setCurrentUser(user);
+    }
+  }, []);
+
+  const handleLogout = () => {
+    authService.logout();
+    setCurrentUser(null);
+  };
+
   return (
-    <header className=" header" id="header">
+    <header className="header" id="header">
       <div className="container header-content">
         <div className="logo">
           <Link to="/">KO'ZGU</Link>
@@ -22,12 +39,24 @@ const Header = () => {
               </NavLink>
             </li>
           </ul>
-          <Link to={"/login"}>
-            <button className="login-btn" type="button">
-              <FaUser />
-              KIRISH
-            </button>
-          </Link>
+
+          {currentUser ? (
+            <div className="user-info">
+              <span className="username">
+                <FaUser /> {currentUser.username}
+              </span>
+              <button className="logout-btn" onClick={handleLogout}>
+                Chiqish
+              </button>
+            </div>
+          ) : (
+            <Link to={"/login"}>
+              <button className="login-btn" type="button">
+                <FaUser />
+                KIRISH
+              </button>
+            </Link>
+          )}
         </nav>
       </div>
     </header>
