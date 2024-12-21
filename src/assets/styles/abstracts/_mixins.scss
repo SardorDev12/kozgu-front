@@ -1,3 +1,4 @@
+@use "sass:color";
 @use "./vars.scss";
 
 @mixin container-style($max-width: $max-width, $padding: $container-padding) {
@@ -64,9 +65,8 @@
   transition: background-color 0.1s;
   font-weight: 600;
   &:hover {
-    background-color: $hover-bg;
-    border: 1px solid $hover-border;
-    color: $hover-txt;
+    background-color: color.adjust(vars.$pr-color, $lightness: 10%);
+    background-color: color.adjust(vars.$pr-color, $lightness: 10%);
   }
 }
 

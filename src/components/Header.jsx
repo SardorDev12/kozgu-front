@@ -18,10 +18,10 @@ const Header = () => {
     })();
   }, []);
 
-  const handleLogout = () => {
-    authService.logout();
-    setCurrentUser(null);
-  };
+  // const handleLogout = () => {
+  //   authService.logout();
+  //   setCurrentUser(null);
+  // };
 
   return (
     <header className="header" id="header">

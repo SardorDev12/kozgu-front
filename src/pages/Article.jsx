@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { getReq } from "../services/apiService";
+import { getReq, postReq } from "../services/apiService";
 import { useParams } from "react-router-dom";
 import { FaPencil } from "react-icons/fa6";
 import { FaCalendar } from "react-icons/fa";
 import { IoTime } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
+import authService from "../services/authService";
 import "../assets/styles/pages/article.scss";
 
 const Article = () => {
@@ -12,40 +13,67 @@ const Article = () => {
   const [article, setArticle] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [comment, setComment] = useState(null);
 
   const [comments, setComments] = useState(null);
   const [commentError, setCommentError] = useState(false);
 
+  const handleSubmitComment = async () => {
+    if (!comment || !currentUser) {
+      setCommentError("Comment cannot be empty and user must be logged in.");
+      return;
+    }
+
+    try {
+      await postReq(`comments/create/`, {
+        content: comment,
+        post: article?.id,
+        user: currentUser?.id,
+      });
+      setComment("");
+      fetchComments();
+    } catch (error) {
+      setCommentError("Failed to post the comment. Please try again.");
+    }
+  };
+
+  const fetchArticles = async () => {
+    setLoading(true);
+    setError("");
+    try {
+      const res = await getReq("posts/");
+      if (!res) throw new Error("No data received");
+      const post = res.find((post) => post?.id === parseInt(id));
+      if (!post) throw new Error("Article not found");
+      setArticle(post);
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const fetchComments = async () => {
+    try {
+      const res = await getReq(`posts/${id}/comments/`);
+      if (!res) throw new Error("No comments received");
+      setComments(res);
+    } catch (error) {
+      setCommentError(error.message);
+    }
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      setError("");
-      try {
-        const res = await getReq("posts/");
-        if (!res) throw new Error("No data received");
-        const post = res.find((post) => post?.id === parseInt(id));
-        if (!post) throw new Error("Article not found");
-        setArticle(post);
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
+    (async () => {
+      const currentUser = await authService.getCurrentUser();
+      if (currentUser) {
+        setCurrentUser(currentUser);
+      } else {
+        console.log("Failed to fetch current user.");
       }
-    };
-
-    fetchData();
-
-    const fetchComments = async () => {
-      try {
-        const res = await getReq(`posts/${id}/comments/`);
-        console.log(res);
-        if (!res) throw new Error("No comments received");
-        setComments(res);
-      } catch (error) {
-        setCommentError(error.message);
-      }
-    };
-
+    })([]);
+    fetchArticles();
     fetchComments();
   }, [id]);
 
@@ -92,27 +120,37 @@ const Article = () => {
           </li>
         ))}
       </ul>
-      <form className="article-comment">
+      <form
+        className="article-comment"
+        onSubmit={(e) => {
+          e.preventDefault(); // Prevent form reload
+          handleSubmitComment(); // Call the submission handler
+        }}
+      >
         <h3 className="section-title">Izohlar</h3>
         <textarea
           className="commit-area"
           name="comment"
           id="comment"
+          onChange={(e) => setComment(e.target.value)}
+          value={comment || ""}
+          placeholder="Leave your comment here..."
         ></textarea>
         <button type="submit" className="submit-btn">
           JO'NATISH
         </button>
+        {commentError ? (
+          <div>Error: {commentError}</div>
+        ) : (
+          <ul>
+            {comments?.map((comment) => (
+              <li className="comment" key={comment.id}>
+                {comment.content}
+              </li>
+            ))}
+          </ul>
+        )}
       </form>
-      <h3 className="section-title">Izohlar</h3>
-      {commentError ? (
-        <div>Error: {commentError}</div>
-      ) : (
-        <ul>
-          {comments?.map((comment) => (
-            <li key={comment.id}>{comment.content}</li>
-          ))}
-        </ul>
-      )}
     </div>
   );
 };

@@ -73,6 +73,7 @@
   }
 
   .article-comment {
+    @include mixins.flex(column, left, left);
     @include mixins.article;
 
     .commit-area {
@@ -91,8 +92,9 @@
     }
     .submit-btn {
       @include mixins.button(vars.$pr-color, vars.$bg-color, vars.$pr-color);
-      float: right;
       margin: vars.$spacing-sm 0;
+      align-self: flex-end;
+      transition: background-color 0.3s ease;
     }
   }
 }
