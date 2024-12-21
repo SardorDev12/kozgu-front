@@ -13,6 +13,9 @@ const Article = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
+  const [comments, setComments] = useState(null);
+  const [commentError, setCommentError] = useState(false);
+
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -20,7 +23,7 @@ const Article = () => {
       try {
         const res = await getReq("posts/");
         if (!res) throw new Error("No data received");
-        const post = res.find((post) => post.id === parseInt(id));
+        const post = res.find((post) => post?.id === parseInt(id));
         if (!post) throw new Error("Article not found");
         setArticle(post);
       } catch (error) {
@@ -29,7 +32,21 @@ const Article = () => {
         setLoading(false);
       }
     };
+
     fetchData();
+
+    const fetchComments = async () => {
+      try {
+        const res = await getReq(`posts/${id}/comments/`);
+        console.log(res);
+        if (!res) throw new Error("No comments received");
+        setComments(res);
+      } catch (error) {
+        setCommentError(error.message);
+      }
+    };
+
+    fetchComments();
   }, [id]);
 
   if (loading) return <div className="container loading">Loading...</div>;
@@ -86,6 +103,16 @@ const Article = () => {
           JO'NATISH
         </button>
       </form>
+      <h3 className="section-title">Izohlar</h3>
+      {commentError ? (
+        <div>Error: {commentError}</div>
+      ) : (
+        <ul>
+          {comments?.map((comment) => (
+            <li key={comment.id}>{comment.content}</li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

@@ -8,20 +8,30 @@ import { Link, NavLink } from "react-router-dom";
 import SectionTitle from "../components/SectionTitle.jsx";
 
 const TopArticle = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null); // Set initial state to null
+  const [error, setError] = useState(null); // Error state
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await getReq("posts/");
-        const topPost = res.find((post) => post.category == "TOP");
+        const topPost = res.find((post) => post.category === "TOP");
         setData(topPost);
       } catch (error) {
-        console.log(error);
+        console.error(error);
+        setError("Failed to fetch top article.");
       }
     };
     fetchData();
   }, []);
+
+  if (error) {
+    return <div className="error-message">{error}</div>; // Display error message
+  }
+
+  if (!data) {
+    return null; // Return null while data is loading or absent
+  }
 
   return (
     <article className="container top-article">

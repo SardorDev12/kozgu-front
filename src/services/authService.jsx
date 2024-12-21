@@ -8,7 +8,7 @@ const register = (username, email, password) => {
 
 const login = async (username, password) => {
   try {
-    const response = await axios.post(API + "token/", { username, password });
+    const response = await axios.post(API + "login/", { username, password });
     const { access, refresh } = response.data;
 
     if (access) {
@@ -20,9 +20,6 @@ const login = async (username, password) => {
         access,
         refresh,
         username: userInfoResponse.data.username,
-        email: userInfoResponse.data.email,
-        first_name: userInfoResponse.data.first_name,
-        last_name: userInfoResponse.data.last_name,
       };
 
       localStorage.setItem("user", JSON.stringify(userData));
@@ -41,20 +38,34 @@ const logout = () => {
 
 const getCurrentUser = async () => {
   try {
-    const user = JSON.parse(localStorage.getItem("user")); // Get stored user data
-    if (!user || !user.access) throw new Error("Access token not found");
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user || !user.access) {
+      console.error("Access token not found");
+      return null;
+    }
 
-    const response = await fetch(`${API}user/`, {
+    if (!API) {
+      throw new Error("API endpoint is not defined");
+    }
+
+    const response = await axios.get(`${API}user/`, {
       headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${user.access}`, // Correct access token usage
+        Authorization: `Bearer ${user.access}`,
       },
     });
 
-    if (!response.ok) throw new Error("Failed to fetch user info");
-    return await response.json();
+    return response.data;
   } catch (error) {
-    console.error("Error fetching user info:", error.message);
+    if (error.response) {
+      console.error(
+        `Error fetching user info: ${error.response.status} - ${error.response.data}`
+      );
+    } else if (error.request) {
+      console.error("No response received from server:", error.request);
+    } else {
+      console.error("Error fetching user info:", error.message);
+    }
+    return null;
   }
 };
 

@@ -8,11 +8,14 @@ const Header = () => {
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
-    const user = authService.getCurrentUser();
-    console.log(user);
-    if (user) {
-      setCurrentUser(user);
-    }
+    (async () => {
+      const currentUser = await authService.getCurrentUser();
+      if (currentUser) {
+        setCurrentUser(currentUser);
+      } else {
+        console.log("Failed to fetch current user.");
+      }
+    })();
   }, []);
 
   const handleLogout = () => {
@@ -43,11 +46,8 @@ const Header = () => {
           {currentUser ? (
             <div className="user-info">
               <span className="username">
-                <FaUser /> {currentUser.username}
+                <FaUser /> {currentUser?.username}
               </span>
-              <button className="logout-btn" onClick={handleLogout}>
-                Chiqish
-              </button>
             </div>
           ) : (
             <Link to={"/login"}>
