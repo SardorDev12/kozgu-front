@@ -3,6 +3,8 @@ import { FaUser } from "react-icons/fa";
 import authService from "../services/authService";
 import "../assets/styles/components/header.scss";
 import { useState, useEffect } from "react";
+import Search from "./Search";
+import { FaSignOutAlt } from "react-icons/fa";
 
 const Header = () => {
   const [currentUser, setCurrentUser] = useState(null);
@@ -18,10 +20,10 @@ const Header = () => {
     })();
   }, []);
 
-  // const handleLogout = () => {
-  //   authService.logout();
-  //   setCurrentUser(null);
-  // };
+  const handleLogout = () => {
+    authService.logout();
+    setCurrentUser(null);
+  };
 
   return (
     <header className="header" id="header">
@@ -48,6 +50,10 @@ const Header = () => {
               <span className="username">
                 <FaUser /> {currentUser?.username}
               </span>
+              <FaSignOutAlt
+                className="signout-btn"
+                onClick={() => handleLogout()}
+              />
             </div>
           ) : (
             <Link to={"/login"}>
@@ -59,6 +65,7 @@ const Header = () => {
           )}
         </nav>
       </div>
+      <Search />
     </header>
   );
 };

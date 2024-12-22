@@ -28,7 +28,6 @@
   transform: translate(-50%, -50%);
 }
 
-// Responsive
 @mixin device($device) {
   @if $device == mobile {
     @media (max-width: 768px) {
@@ -67,6 +66,7 @@
   &:hover {
     background-color: color.adjust(vars.$pr-color, $lightness: 10%);
     background-color: color.adjust(vars.$pr-color, $lightness: 10%);
+    color: white;
   }
 }
 

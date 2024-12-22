@@ -51,27 +51,6 @@
     line-height: 2rem;
   }
 
-  .tags {
-    @include mixins.article;
-    display: block;
-    @include mixins.flex(row, start, center);
-    gap: vars.$gap * 2;
-
-    @for $i from 1 through list.length(vars.$colors) {
-      li:nth-child(#{list.length(vars.$colors)}n + #{$i}) {
-        @include mixins.button(
-          vars.$bg-color,
-          vars.$pr-color,
-          list.nth(vars.$colors, $i),
-          list.nth(vars.$colors, $i),
-          list.nth(vars.$colors, $i),
-          vars.$bg-color
-        );
-        padding: vars.$spacing-xxs vars.$spacing-lg;
-      }
-    }
-  }
-
   .article-comment {
     @include mixins.flex(column, left, left);
     @include mixins.article;
@@ -89,6 +68,17 @@
       outline: none;
       transition: all 0.3s ease;
       resize: none;
+
+      &::placeholder {
+        opacity: 0.5;
+      }
+    }
+
+    .signin__cta > a {
+      @include mixins.button(vars.$pr-color, vars.$bg-color, vars.$pr-color);
+      width: 100%;
+      text-align: center;
+      margin: 1rem 0;
     }
     .submit-btn {
       @include mixins.button(vars.$pr-color, vars.$bg-color, vars.$pr-color);

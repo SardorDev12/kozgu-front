@@ -1,5 +1,7 @@
 @use "../abstracts/vars.scss";
 @use "../abstracts/mixins.scss";
+@use "sass:color";
+@use "sass:list";
 
 .header {
   padding: vars.$spacing-sm 0;
@@ -7,6 +9,63 @@
   width: 100%;
   background-color: vars.$bg-color;
   z-index: 2;
+
+  .categs-search {
+    @include mixins.flex(row, space-between, center);
+    gap: vars.$gap * 3;
+    padding: vars.$spacing-sm 0 0;
+
+    .categories {
+      display: block;
+      width: 80%;
+      @include mixins.flex(row, start, center);
+      gap: vars.$gap * 2;
+
+      @for $i from 1 through list.length(vars.$colors) {
+        li:nth-child(#{list.length(vars.$colors)}n + #{$i}) {
+          @include mixins.button(
+            vars.$bg-color,
+            vars.$pr-color,
+            list.nth(vars.$colors, $i),
+            list.nth(vars.$colors, $i),
+            list.nth(vars.$colors, $i),
+            vars.$bg-color
+          );
+          &:hover {
+            color: white;
+          }
+          padding: vars.$spacing-xxs vars.$spacing-lg;
+          &:nth-child(1) {
+            background-color: vars.$sc-color;
+            color: vars.$bg-color;
+            border-color: vars.$sc-color;
+            &:hover {
+              background-color: color.adjust(vars.$sc-color, $lightness: -10%);
+            }
+          }
+        }
+      }
+    }
+
+    .search {
+      @include mixins.flex(row, space-between, center);
+      gap: vars.$gap;
+      .search-btn {
+        @include mixins.button(vars.$pr-color, vars.$bg-color, vars.$pr-color);
+
+        &:hover {
+          background-color: color.adjust(vars.$pr-color, $lightness: 10%);
+          background-color: color.adjust(vars.$pr-color, $lightness: 10%);
+        }
+      }
+    }
+  }
+
+  .categs-search.tags {
+    .categories {
+      width: 100%;
+    }
+  }
   .header-content {
     @include mixins.flex(row, space-between, center);
     .logo a {
@@ -47,6 +106,16 @@
       );
       @include mixins.flex(row, space-between, center);
       gap: vars.$gap * 0.5;
+    }
+
+    .user-info {
+      @include mixins.flex(row, space-between, center);
+      gap: vars.$gap * 0.5;
+
+      .signout-btn {
+        color: darkred;
+        cursor: pointer;
+      }
     }
   }
 }

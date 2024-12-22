@@ -4,11 +4,12 @@ import { useParams } from "react-router-dom";
 import { FaPencil } from "react-icons/fa6";
 import { FaCalendar } from "react-icons/fa";
 import { IoTime } from "react-icons/io5";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import authService from "../services/authService";
 import "../assets/styles/pages/article.scss";
 
 const Article = () => {
+  const location = useLocation();
   const { id } = useParams();
   const [article, setArticle] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -123,22 +124,32 @@ const Article = () => {
       <form
         className="article-comment"
         onSubmit={(e) => {
-          e.preventDefault(); // Prevent form reload
-          handleSubmitComment(); // Call the submission handler
+          e.preventDefault();
+          handleSubmitComment();
         }}
       >
         <h3 className="section-title">Izohlar</h3>
-        <textarea
-          className="commit-area"
-          name="comment"
-          id="comment"
-          onChange={(e) => setComment(e.target.value)}
-          value={comment || ""}
-          placeholder="Leave your comment here..."
-        ></textarea>
-        <button type="submit" className="submit-btn">
-          JO'NATISH
-        </button>
+        {currentUser ? (
+          <>
+            <textarea
+              className="commit-area"
+              name="comment"
+              id="comment"
+              onChange={(e) => setComment(e.target.value)}
+              value={comment || ""}
+              placeholder="Izoxlaringizni shu yerda qoldiring..."
+            ></textarea>
+            <button type="submit" className="submit-btn">
+              JO'NATISH
+            </button>
+          </>
+        ) : (
+          <div className="signin__cta">
+            <NavLink to="/login/" state={{ from: location.pathname }}>
+              Sign in to comment
+            </NavLink>
+          </div>
+        )}
         {commentError ? (
           <div>Error: {commentError}</div>
         ) : (
