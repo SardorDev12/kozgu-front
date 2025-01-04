@@ -8,14 +8,14 @@
   .article-metadata {
     width: 100%;
     @include mixins.flex(row, center, center);
-    gap: vars.$gap * 5;
+    gap: 1rem * 5;
     text-align: center;
-    margin: vars.$spacing-xxl auto vars.$spacing-md;
+    margin: 2rem auto 1rem;
 
     div,
     a.author {
       @include mixins.flex(row, space-between, center);
-      gap: vars.$gap * 0.5;
+      gap: 1rem * 0.5;
       color: vars.$txt-muted;
       svg {
         color: vars.$txt-muted;
@@ -37,12 +37,11 @@
   }
 
   .article-img {
-    @include mixins.article;
     text-align: center;
     max-height: 250px;
     overflow: hidden;
     object-position: center;
-    margin: vars.$spacing-xl auto;
+    margin: 2rem auto;
   }
 
   .article-content {
@@ -53,7 +52,6 @@
 
   .article-comment {
     @include mixins.flex(column, left, left);
-    @include mixins.article;
 
     .commit-area {
       width: 100%;
@@ -82,7 +80,7 @@
     }
     .submit-btn {
       @include mixins.button(vars.$pr-color, vars.$bg-color, vars.$pr-color);
-      margin: vars.$spacing-sm 0;
+      margin: 1rem 0;
       align-self: flex-end;
       transition: background-color 0.3s ease;
     }

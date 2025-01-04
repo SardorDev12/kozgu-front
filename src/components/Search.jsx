@@ -33,6 +33,7 @@ const Search = () => {
           type="text"
           placeholder="Maqolalarni izlang"
           required
+          name="query"
         />
         <button className="search-btn" type="submit">
           IZLASH

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import "../assets/styles/components/sectionTitle.scss";
 
 const SectionTitle = ({ addres, title }) => {
   return (

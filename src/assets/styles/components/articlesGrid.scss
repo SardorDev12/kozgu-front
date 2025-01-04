@@ -4,14 +4,15 @@
 @use "sass:list";
 
 .articles-grid__content {
-  @include mixins.grid(4, vars.$gap * 1);
-  margin-bottom: vars.$spacing-lg;
+  @include mixins.grid(4);
+  margin-bottom: 2rem;
+  gap: 1rem;
 
   .article {
     @include mixins.flex(column, space-between, start);
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-    padding: vars.$spacing-xxs;
+    padding: 2rem;
 
     border: 1px solid #e0e0e0;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -35,7 +36,7 @@
         z-index: 99;
         color: red;
         @include mixins.button(vars.$bg-color, vars.$pr-color, vars.$colors);
-        padding: vars.$spacing-xxs vars.$spacing-lg;
+        padding: 2rem 2rem;
       }
     }
 
@@ -57,12 +58,12 @@
 
       .article-cont__metadata {
         @include mixins.flex(row, space-between, center);
-        margin-top: vars.$spacing-md;
-        gap: vars.$gap * 5;
+        margin-top: 2rem;
+        gap: 1rem;
         div {
           @include mixins.flex(row, start, center);
           color: vars.$txt-muted;
-          gap: vars.$gap * 0.2;
+          gap: 1rem 0.2;
           align-items: center;
           font-size: 0.85rem;
         }

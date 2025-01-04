@@ -1,78 +1,24 @@
 @use "sass:color";
 @use "./vars.scss";
 
-@mixin container-style($max-width: $max-width, $padding: $container-padding) {
-  width: 100%;
-  max-width: vars.$max-width;
-  margin: 0 auto;
-  padding: 0 vars.$padding;
-}
-
-@mixin flex($direction: row, $justify: flex-start, $align: stretch) {
+@mixin flex($direction, $justify, $align) {
   display: flex;
   flex-direction: $direction;
   justify-content: $justify;
   align-items: $align;
 }
 
-@mixin grid($columns, $gap) {
+@mixin grid($columns) {
   display: grid;
   grid-template-columns: repeat($columns, 1fr);
-  gap: $gap;
 }
 
-@mixin center-absolute() {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-@mixin device($device) {
-  @if $device == mobile {
-    @media (max-width: 768px) {
-      @content;
-    }
-  } @else if $device == tablet {
-    @media (max-width: 1024px) {
-      @content;
-    }
-  } @else if $device == desktop {
-    @media (min-width: 1025px) {
-      @content;
-    }
-  }
-}
-
-// Elements
-@mixin button(
-  $bg-color: none,
-  $txt-color: none,
-  $border-color: none,
-  $hover-bg-color: none,
-  $hover-border-color: none,
-  $hover-txt-color: none
-) {
-  background-color: $bg_color;
-  border-radius: vars.$radius;
+@mixin button($bg, $txt_color, $border_color) {
+  background-color: $bg;
   color: $txt-color;
-  padding: vars.$spacing-xs vars.$spacing-md;
-  display: inline-block;
   border: 1px solid $border-color;
-  text-decoration: none;
+  //
+  border-radius: 5px;
+  padding: 8px 16px;
   cursor: pointer;
-  transition: background-color 0.1s;
-  font-weight: 600;
-  &:hover {
-    background-color: $hover-bg-color;
-    color: $hover-txt-color;
-    background-color: color.adjust(vars.$pr-color, $lightness: 10%);
-    background-color: color.adjust(vars.$pr-color, $lightness: 10%);
-    color: white;
-  }
-}
-
-@mixin article {
-  width: 60%;
-  margin: 0 auto;
 }

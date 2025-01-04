@@ -1,0 +1,29 @@
+@use "../abstracts/mixins.scss";
+@use "../abstracts/vars.scss";
+@use "sass:color";
+@use "sass:list";
+
+.tags {
+  @include mixins.article;
+  display: block;
+  @include mixins.flex(row, start, center);
+  gap: vars.$gap * 2;
+
+  @for $i from 1 through list.length(vars.$colors) {
+    li:nth-child(#{list.length(vars.$colors)}n + #{$i}) {
+      @include mixins.button(
+        vars.$bg-color,
+        vars.$pr-color,
+        list.nth(vars.$colors, $i),
+        list.nth(vars.$colors, $i),
+        list.nth(vars.$colors, $i),
+        vars.$bg-color
+      );
+      padding: vars.$spacing-xxs vars.$spacing-lg;
+      &:hover {
+        color: white;
+        border-color: list.nth(vars.$colors, $i);
+      }
+    }
+  }
+}

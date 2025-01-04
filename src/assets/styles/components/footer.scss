@@ -3,19 +3,18 @@
 @use "sass:color";
 
 .footer {
-  padding: vars.$spacing-sm 0;
+  padding: 1rem 0;
   .footer-content {
     @include mixins.flex(row, space-between, start);
     .social-network {
       .form {
         @include mixins.flex(row, space-between, center);
-        gap: vars.$gap;
+        gap: 1rem;
         input {
           @include mixins.button(
             vars.$bg-color,
             vars.$pr-color,
-            vars.$pr-color,
-            vars.$sc-color
+            vars.$pr-color
           );
           cursor: text;
           padding-left: 0.5rem;
@@ -58,13 +57,12 @@
         text-decoration: none;
         color: vars.$pr-color;
         font-weight: 600;
-        font-size: vars.$large;
-        font-family: vars.$logo;
+        font-size: 2rem;
       }
       .foot-nav_items {
         @include mixins.flex(row, space-between, center);
         list-style-type: none;
-        gap: vars.$gap * 3;
+        gap: 1rem * 3;
         li > a {
           &:hover {
             color: vars.$sc-color;

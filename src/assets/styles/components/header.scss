@@ -4,7 +4,7 @@
 @use "sass:list";
 
 .header {
-  padding: vars.$spacing-sm 0;
+  padding: 1rem 0;
   position: fixed;
   width: 100%;
   background-color: vars.$bg-color;
@@ -12,29 +12,26 @@
 
   .categs-search {
     @include mixins.flex(row, space-between, center);
-    gap: vars.$gap * 3;
-    padding: vars.$spacing-sm 0 0;
+    gap: 1rem * 3;
+    padding: 1rem 0 0;
 
     .categories {
       display: block;
       width: 80%;
       @include mixins.flex(row, start, center);
-      gap: vars.$gap * 2;
+      gap: 1rem * 2;
 
       @for $i from 1 through list.length(vars.$colors) {
         li:nth-child(#{list.length(vars.$colors)}n + #{$i}) {
           @include mixins.button(
             vars.$bg-color,
             vars.$pr-color,
-            list.nth(vars.$colors, $i),
-            list.nth(vars.$colors, $i),
-            list.nth(vars.$colors, $i),
-            vars.$bg-color
+            list.nth(vars.$colors, $i)
           );
           &:hover {
             color: white;
           }
-          padding: vars.$spacing-xxs vars.$spacing-lg;
+          padding: 2rem 1rem;
           &:nth-child(1) {
             background-color: vars.$sc-color;
             color: vars.$bg-color;
@@ -49,7 +46,7 @@
 
     .search {
       @include mixins.flex(row, space-between, center);
-      gap: vars.$gap;
+      gap: 1rem;
       .search-btn {
         @include mixins.button(vars.$pr-color, vars.$bg-color, vars.$pr-color);
 
@@ -72,8 +69,7 @@
       text-decoration: none;
       color: vars.$pr-color;
       font-weight: 600;
-      font-size: vars.$large;
-      font-family: vars.$logo;
+      font-size: 2rem;
     }
     .navbar {
       @include mixins.flex(row, space-between, center);
@@ -81,10 +77,9 @@
       .items {
         @include mixins.flex(row, space-between, center);
         list-style-type: none;
-        gap: vars.$gap * 3;
-        padding: 0 vars.$gap * 10;
+        gap: 1rem * 3;
+        padding: 0 1rem * 10;
         li > a {
-          font-family: vars.$logo;
           text-decoration: none;
           color: vars.$pr-color;
 
@@ -96,21 +91,14 @@
     }
 
     .login-btn {
-      @include mixins.button(
-        vars.$bg-color,
-        vars.$pr-color,
-        vars.$pr-color,
-        vars.$bg-color,
-        vars.$sc-color,
-        vars.$sc-color
-      );
+      @include mixins.button(vars.$bg-color, vars.$pr-color, vars.$pr-color);
       @include mixins.flex(row, space-between, center);
-      gap: vars.$gap * 0.5;
+      gap: 1rem * 0.5;
     }
 
     .user-info {
       @include mixins.flex(row, space-between, center);
-      gap: vars.$gap * 0.5;
+      gap: 1rem * 0.5;
 
       .signout-btn {
         color: darkred;

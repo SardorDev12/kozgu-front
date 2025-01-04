@@ -3,11 +3,11 @@
 @use "../abstracts/vars";
 
 .top-article {
-  padding: vars.$spacing-md 0;
+  padding: 2rem 0;
 
   .article-content {
     @include mixins.flex(row, space-between, start);
-    gap: vars.$gap * 5;
+    gap: 1rem * 5;
 
     .text-div {
       flex: 1;
@@ -24,19 +24,19 @@
           background-color: color.adjust(vars.$pr-color, $lightness: 10%);
           background-color: color.adjust(vars.$pr-color, $lightness: 10%);
         }
-        margin: vars.$spacing-sm 0;
+        margin: 1rem 0;
       }
 
       .article-metadata {
         width: 80%;
         @include mixins.flex(row, space-between, center);
         text-align: start;
-        margin-top: vars.$spacing-md;
+        margin-top: 2rem;
 
         div,
         a.author {
           @include mixins.flex(row, space-between, center);
-          gap: vars.$gap * 0.5;
+          gap: 1rem * 0.5;
           color: vars.$txt-muted;
           svg {
             color: vars.$txt-muted;

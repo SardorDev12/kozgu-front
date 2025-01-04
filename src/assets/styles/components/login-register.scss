@@ -19,7 +19,7 @@
 
   .login-register-form {
     @include mixins.flex(column, center, center);
-    gap: vars.$gap * 0.5;
+    gap: 1rem * 0.5;
     width: 100%;
 
     .form-title {
