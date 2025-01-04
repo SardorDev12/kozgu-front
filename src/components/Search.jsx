@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { getReq } from "../services/apiService";
 
 const Search = () => {
-  const [data, setData] = useState([]);
+  const [categories, setData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,7 +21,7 @@ const Search = () => {
       <ul className="categories">
         <li className="all categ-item">Barchasi</li>
 
-        {data.map((item, index) => (
+        {categories.map((item, index) => (
           <li className="categ-item" key={index}>
             {item.name}
           </li>

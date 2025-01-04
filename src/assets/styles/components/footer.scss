@@ -14,7 +14,8 @@
           @include mixins.button(
             vars.$bg-color,
             vars.$pr-color,
-            vars.$pr-color
+            vars.$pr-color,
+            vars.$sc-color
           );
           cursor: text;
           padding-left: 0.5rem;
