@@ -1,9 +1,10 @@
+import "../assets/styles/components/header.scss";
+
+// Components
 import { Link, NavLink } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import authService from "../services/authService";
-import "../assets/styles/components/header.scss";
 import { useState, useEffect } from "react";
-import Search from "./Search";
 import { FaSignOutAlt } from "react-icons/fa";
 
 const Header = () => {
@@ -65,7 +66,6 @@ const Header = () => {
           )}
         </nav>
       </div>
-      <Search />
     </header>
   );
 };

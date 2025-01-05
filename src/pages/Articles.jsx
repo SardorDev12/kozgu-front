@@ -1,8 +1,10 @@
+import "../assets/styles/pages/articles.scss";
+
+// Components
 import Search from "../components/Search";
 import { getReq } from "../services/apiService";
 import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import "../assets/styles/pages/articles.scss";
 import { FaCalendar } from "react-icons/fa";
 import { IoTime } from "react-icons/io5";
 

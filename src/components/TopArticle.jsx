@@ -1,6 +1,8 @@
+import "../assets/styles/components/topArticle.scss";
+
+// Components
 import { useEffect, useState } from "react";
 import { getReq } from "../services/apiService";
-import "../assets/styles/components/topArticle.scss";
 import { FaPencil } from "react-icons/fa6";
 import { FaCalendar } from "react-icons/fa";
 import { IoTime } from "react-icons/io5";
@@ -41,7 +43,7 @@ const TopArticle = () => {
           <h2 className="article-title">{data.title}</h2>
           <div className="article-div">
             <div className="article-content__text">
-              {data.content?.substring(0, 400) + "..."}
+              {data.content?.substring(0, 800) + "..."}
             </div>
             <Link className="readmore-btn" to={`/articles/${data.id}`}>
               Read More

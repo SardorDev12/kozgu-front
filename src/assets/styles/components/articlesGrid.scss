@@ -2,70 +2,71 @@
 @use "../abstracts/vars";
 @use "sass:color";
 @use "sass:list";
+.articles-grid {
+  padding-top: 3rem;
+  .articles-grid__content {
+    @include mixins.grid(4);
+    margin-bottom: 2rem;
+    gap: 1rem;
 
-.articles-grid__content {
-  @include mixins.grid(4);
-  margin-bottom: 2rem;
-  gap: 1rem;
-
-  .article {
-    @include mixins.flex(column, space-between, start);
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    padding: 2rem;
-
-    border: 1px solid #e0e0e0;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-    &:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-    }
-
-    .article-img {
-      position: relative;
-      border-radius: 8px 8px 0 0;
-      overflow: hidden;
-
-      .article-category {
-        position: absolute;
-        top: -0.5rem;
-        left: 0.5rem;
-        z-index: 99;
-        color: red;
-        @include mixins.button(vars.$bg-color, vars.$pr-color, vars.$colors);
-        padding: 2rem 2rem;
-      }
-    }
-
-    .article-cont {
-      width: 100%;
+    .article {
       @include mixins.flex(column, space-between, start);
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      padding: 2rem;
 
-      .article-cont__title {
-        font-size: 1.2rem;
-        font-weight: bold;
-        margin-bottom: 0.5rem;
+      border: 1px solid #e0e0e0;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
       }
 
-      .article-cont__text {
-        font-size: 0.95rem;
-        line-height: 1.5;
-        color: vars.$txt-muted;
+      .article-img {
+        position: relative;
+        border-radius: 8px 8px 0 0;
+        overflow: hidden;
+
+        .article-category {
+          position: absolute;
+          top: -0.5rem;
+          left: 0.5rem;
+          color: red;
+          @include mixins.button(vars.$bg-color, vars.$pr-color, vars.$colors);
+          padding: 2rem 2rem;
+        }
       }
 
-      .article-cont__metadata {
-        @include mixins.flex(row, space-between, center);
-        margin-top: 2rem;
-        gap: 1rem;
-        div {
-          @include mixins.flex(row, start, center);
+      .article-cont {
+        width: 100%;
+        @include mixins.flex(column, space-between, start);
+
+        .article-cont__title {
+          font-size: 1.2rem;
+          font-weight: bold;
+          margin-bottom: 0.5rem;
+        }
+
+        .article-cont__text {
+          font-size: 0.95rem;
+          line-height: 1.5;
           color: vars.$txt-muted;
-          gap: 1rem 0.2;
-          align-items: center;
-          font-size: 0.85rem;
+        }
+
+        .article-cont__metadata {
+          @include mixins.flex(row, space-between, center);
+          margin-top: 2rem;
+          gap: 1rem;
+          div {
+            @include mixins.flex(row, start, center);
+            color: vars.$txt-muted;
+            gap: 1rem 0.2;
+            align-items: center;
+            font-size: 0.85rem;
+          }
         }
       }
     }

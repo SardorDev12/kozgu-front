@@ -10,54 +10,6 @@
   background-color: vars.$bg-color;
   z-index: 2;
 
-  .categs-search {
-    @include mixins.flex(row, space-between, center);
-    gap: 1rem * 3;
-    padding: 1rem 0 0;
-
-    .categories {
-      display: block;
-      width: 80%;
-      @include mixins.flex(row, start, center);
-      gap: 1rem * 2;
-
-      @for $i from 1 through list.length(vars.$colors) {
-        li:nth-child(#{list.length(vars.$colors)}n + #{$i}) {
-          @include mixins.button(
-            vars.$bg-color,
-            vars.$pr-color,
-            list.nth(vars.$colors, $i)
-          );
-          &:hover {
-            color: white;
-          }
-          padding: 2rem 1rem;
-          &:nth-child(1) {
-            background-color: vars.$sc-color;
-            color: vars.$bg-color;
-            border-color: vars.$sc-color;
-            &:hover {
-              background-color: color.adjust(vars.$sc-color, $lightness: -10%);
-            }
-          }
-        }
-      }
-    }
-
-    .search {
-      @include mixins.flex(row, space-between, center);
-      gap: 1rem;
-      .search-btn {
-        @include mixins.button(vars.$pr-color, vars.$bg-color, vars.$pr-color);
-
-        &:hover {
-          background-color: color.adjust(vars.$pr-color, $lightness: 10%);
-          background-color: color.adjust(vars.$pr-color, $lightness: 10%);
-        }
-      }
-    }
-  }
-
   .categs-search.tags {
     .categories {
       width: 100%;

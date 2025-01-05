@@ -1,3 +1,6 @@
+import "../assets/styles/components/search.scss";
+
+// Components
 import { useState, useEffect } from "react";
 import { getReq } from "../services/apiService";
 
@@ -17,27 +20,28 @@ const Search = () => {
   }, []);
 
   return (
-    <div className="container categs-search">
-      <ul className="categories">
-        <li className="all categ-item">Barchasi</li>
-
-        {categories.map((item, index) => (
-          <li className="categ-item" key={index}>
-            {item.name}
-          </li>
-        ))}
-      </ul>
-      <div className="search">
-        <input
-          className="search-input"
-          type="text"
-          placeholder="Maqolalarni izlang"
-          required
-          name="query"
-        />
-        <button className="search-btn" type="submit">
-          IZLASH
-        </button>
+    <div className="search-component">
+      <div className="container categs-search">
+        <ul className="categories">
+          <li className="all categ-item">Barchasi</li>
+          {categories.map((item, index) => (
+            <li className="categ-item" key={index}>
+              {item.name}
+            </li>
+          ))}
+        </ul>
+        <div className="search">
+          <input
+            className="search-input"
+            type="text"
+            placeholder="Maqolalarni izlang"
+            required
+            name="query"
+          />
+          <button className="search-btn" type="submit">
+            IZLASH
+          </button>
+        </div>
       </div>
     </div>
   );

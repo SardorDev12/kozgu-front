@@ -1,0 +1,64 @@
+@use "../abstracts/vars.scss";
+@use "../abstracts/mixins.scss";
+@use "sass:color";
+@use "sass:list";
+
+.search-component {
+  position: fixed;
+  width: 100%;
+  background-color: vars.$bg-color;
+  //   background-color: pink;
+  z-index: 2;
+  padding: 0 0 1rem;
+
+  .categs-search {
+    @include mixins.flex(row, space-between, center);
+    gap: 1rem * 3;
+    z-index: 2;
+
+    .categories {
+      @include mixins.flex(row, start, center);
+      gap: 1rem;
+
+      @for $i from 1 through list.length(vars.$colors) {
+        li:nth-child(#{list.length(vars.$colors)}n + #{$i}) {
+          @include mixins.button(
+            vars.$bg-color,
+            list.nth(vars.$colors, $i),
+            list.nth(vars.$colors, $i)
+          );
+          min-width: 3rem;
+          text-align: center;
+          &:hover {
+            color: vars.$bg-color;
+            background-color: color.adjust(
+              list.nth(vars.$colors, $i),
+              $lightness: -10%
+            );
+          }
+          &:nth-child(1) {
+            background-color: vars.$sc-color;
+            color: vars.$bg-color;
+            border-color: vars.$sc-color;
+            &:hover {
+              background-color: color.adjust(vars.$sc-color, $lightness: -10%);
+            }
+          }
+        }
+      }
+    }
+
+    .search {
+      @include mixins.flex(row, space-between, center);
+      gap: 1rem;
+      .search-btn {
+        @include mixins.button(vars.$pr-color, vars.$bg-color, vars.$pr-color);
+
+        &:hover {
+          background-color: color.adjust(vars.$pr-color, $lightness: 10%);
+          background-color: color.adjust(vars.$pr-color, $lightness: 10%);
+        }
+      }
+    }
+  }
+}

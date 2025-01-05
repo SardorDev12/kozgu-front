@@ -1,8 +1,10 @@
+import "../assets/styles/components/articlesGrid.scss";
+
+// Components
 import { useEffect, useState } from "react";
 import { getReq } from "../services/apiService";
 import { FaCalendar } from "react-icons/fa";
 import { IoTime } from "react-icons/io5";
-import "../assets/styles/components/articlesGrid.scss";
 import { Link } from "react-router-dom";
 import SectionTitle from "../components/SectionTitle.jsx";
 
