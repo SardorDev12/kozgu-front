@@ -24,11 +24,17 @@ const Search = () => {
       <div className="container categs-search">
         <ul className="categories">
           <li className="all categ-item">Barchasi</li>
-          {categories.map((item, index) => (
-            <li className="categ-item" key={index}>
-              {item.name}
-            </li>
-          ))}
+          {categories
+            .sort((a, b) => {
+              if (a.name?.toLowerCase() === "top") return -1;
+              if (b.name?.toLowerCase() === "top") return 1;
+              return a.name?.localeCompare(b.name);
+            })
+            .map((item, index) => (
+              <li className="categ-item" key={index}>
+                {item.name}
+              </li>
+            ))}
         </ul>
         <div className="search">
           <input

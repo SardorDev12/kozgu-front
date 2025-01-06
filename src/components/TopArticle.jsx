@@ -41,14 +41,12 @@ const TopArticle = () => {
       <div className="article-content">
         <div className="text-div">
           <h2 className="article-title">{data.title}</h2>
-          <div className="article-div">
-            <div className="article-content__text">
-              {data.content?.substring(0, 800) + "..."}
-            </div>
-            <Link className="readmore-btn" to={`/articles/${data.id}`}>
-              Read More
-            </Link>
+          <div className="article-content__text">
+            {data.content?.substring(0, 800) + "..."}
           </div>
+          <Link className="readmore-btn" to={`/articles/${data.id}`}>
+            Read More
+          </Link>
           <div className="article-metadata">
             <NavLink to="/author/" className="author" title="Author Page">
               <FaPencil />
