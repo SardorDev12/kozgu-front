@@ -1,3 +1,6 @@
+import "../assets/styles/pages/article.scss";
+
+// Components
 import { useEffect, useState } from "react";
 import { getReq, postReq } from "../services/apiService";
 import { useParams } from "react-router-dom";
@@ -6,7 +9,11 @@ import { FaCalendar } from "react-icons/fa";
 import { IoTime } from "react-icons/io5";
 import { NavLink, useLocation } from "react-router-dom";
 import authService from "../services/authService";
-import "../assets/styles/pages/article.scss";
+import { FaUser } from "react-icons/fa";
+import { AiFillLike } from "react-icons/ai";
+import { AiFillDislike } from "react-icons/ai";
+import { FaReply } from "react-icons/fa";
+import { MdEdit } from "react-icons/md";
 
 const Article = () => {
   const location = useLocation();
@@ -32,9 +39,10 @@ const Article = () => {
         post: article?.id,
         user: currentUser?.id,
       });
-      setComment("");
+      setComment();
       fetchComments();
     } catch (error) {
+      console.log(error);
       setCommentError("Failed to post the comment. Please try again.");
     }
   };
@@ -70,8 +78,6 @@ const Article = () => {
       const currentUser = await authService.getCurrentUser();
       if (currentUser) {
         setCurrentUser(currentUser);
-      } else {
-        console.log("Failed to fetch current user.");
       }
     })([]);
     fetchArticles();
@@ -91,77 +97,94 @@ const Article = () => {
   };
 
   return (
-    <div className="container detailed_article">
-      <div className="article-metadata">
-        <NavLink to="/author/" className="author" title="Author Page">
-          <FaPencil />
-          {article?.author}
-        </NavLink>
-        <div className="published-date">
-          <FaCalendar />
-          {article?.published_at?.substring(0, 10)}
-        </div>
-        <div className="read-time">
-          <IoTime />
-          {article?.read_time} daqiqa
-        </div>
-      </div>
-      <hr className="underline" />
-      <h1 className="article-title">{article?.title}</h1>
-      <div className="article-img">
-        <img src={article?.article_pic} alt={article?.title} />
-      </div>
-      <div className="article-content">
-        <p>{article?.content && formatContent(article.content)}</p>
-      </div>
-      <ul className="tags">
-        {article?.tag?.map((item, index) => (
-          <li className="tag-item" key={index}>
-            #{item}
-          </li>
-        ))}
-      </ul>
-      <form
-        className="article-comment"
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleSubmitComment();
-        }}
-      >
-        <h3 className="section-title">Izohlar</h3>
-        {currentUser ? (
-          <>
-            <textarea
-              className="commit-area"
-              name="comment"
-              id="comment"
-              onChange={(e) => setComment(e.target.value)}
-              value={comment || ""}
-              placeholder="Izoxlaringizni shu yerda qoldiring..."
-            ></textarea>
-            <button type="submit" className="submit-btn">
-              JO'NATISH
-            </button>
-          </>
-        ) : (
-          <div className="signin__cta">
-            <NavLink to="/login/" state={{ from: location.pathname }}>
-              Sign in to comment
-            </NavLink>
+    <div className="container article-page">
+      <div className="detailed_article">
+        <div className="article-metadata">
+          <NavLink to="/author/" className="author" title="Author Page">
+            <FaPencil />
+            {article?.author}
+          </NavLink>
+          <div className="published-date">
+            <FaCalendar />
+            {article?.published_at?.substring(0, 10)}
           </div>
-        )}
-        {commentError ? (
-          <div>Error: {commentError}</div>
-        ) : (
-          <ul>
-            {comments?.map((comment) => (
-              <li className="comment" key={comment.id}>
-                {comment.content}
-              </li>
-            ))}
-          </ul>
-        )}
-      </form>
+          <div className="read-time">
+            <IoTime />
+            {article?.read_time} daqiqa
+          </div>
+        </div>
+        <hr className="underline" />
+        <h1 className="article-title">{article?.title}</h1>
+        <div className="article-img">
+          <img src={article?.article_pic} alt={article?.title} />
+        </div>
+        <div className="article-content">
+          <p>{article?.content && formatContent(article.content)}</p>
+        </div>
+        <ul className="article-tags categories">
+          {article?.tag?.map((item, index) => (
+            <li className="categ-item" key={index}>
+              #{item}
+            </li>
+          ))}
+        </ul>
+        <form
+          className="article-comment"
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSubmitComment();
+          }}
+        >
+          {currentUser ? (
+            <>
+              <textarea
+                className="commit-area"
+                name="comment"
+                id="comment"
+                onChange={(e) => setComment(e.target.value)}
+                value={comment || ""}
+                placeholder="Izoxlaringizni shu yerda qoldiring..."
+              ></textarea>
+              <button type="submit" className="submit-btn">
+                JO'NATISH
+              </button>
+            </>
+          ) : (
+            <div className="signin__cta">
+              <NavLink to="/login/" state={{ from: location.pathname }}>
+                Sign in to comment
+              </NavLink>
+            </div>
+          )}
+          {commentError ? (
+            <div>Error: {commentError}</div>
+          ) : (
+            <ul className="article-comments">
+              <h3 className="section-title">Izohlar</h3>
+              {comments?.map((comment) => (
+                <li className="article-comment" key={comment.id}>
+                  <span className="comment-author">
+                    <FaUser />
+                    {comment?.username}
+                  </span>
+                  <span className="comment-text">{comment?.content}</span>
+
+                  <span className="comment-actions">
+                    <AiFillLike className="comment like" />
+                    <AiFillDislike className="comment dislike" />
+                    <FaReply className="comment reply" />
+                    {comment?.user == currentUser?.id ? (
+                      <MdEdit className="comment edit" />
+                    ) : (
+                      ""
+                    )}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </form>
+      </div>
     </div>
   );
 };

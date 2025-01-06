@@ -41,7 +41,7 @@ const getCurrentUser = async () => {
   try {
     const user = JSON.parse(localStorage.getItem("user"));
     if (!user || !user.access) {
-      console.error("Access token not found");
+      // console.error("Access token not found");
       return null;
     }
 

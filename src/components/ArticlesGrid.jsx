@@ -15,7 +15,6 @@ const ArticlesGrid = ({ amount }) => {
     const fetchData = async () => {
       try {
         const res = await getReq("posts/");
-        console.log(res);
 
         const sortedArticles = res.sort(
           (a, b) => new Date(b.created_at) - new Date(a.created_at)
@@ -31,7 +30,7 @@ const ArticlesGrid = ({ amount }) => {
       }
     };
     fetchData();
-  }, [amount]);
+  }, []);
 
   return (
     <div className="container articles-grid">

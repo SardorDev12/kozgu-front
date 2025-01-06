@@ -15,8 +15,6 @@ const Header = () => {
       const currentUser = await authService.getCurrentUser();
       if (currentUser) {
         setCurrentUser(currentUser);
-      } else {
-        console.log("Failed to fetch current user.");
       }
     })();
   }, []);

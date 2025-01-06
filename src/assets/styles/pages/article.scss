@@ -1,88 +1,129 @@
 @use "../abstracts/mixins";
+@use "../abstracts/vars";
 @use "sass:color";
 @use "sass:list";
-@use "../abstracts/vars";
 
-.detailed_article {
-  max-width: 60%;
-  .article-metadata {
-    width: 100%;
-    @include mixins.flex(row, center, center);
-    gap: 1rem * 5;
-    text-align: center;
-    margin: 2rem auto 1rem;
+.article-page {
+  .detailed_article {
+    padding: 0 15rem;
 
-    div,
-    a.author {
-      @include mixins.flex(row, space-between, center);
-      gap: 1rem * 0.5;
-      color: vars.$txt-muted;
-      svg {
-        color: vars.$txt-muted;
-      }
-    }
-
-    a.author:hover {
-      text-decoration: underline;
-    }
-  }
-  .underline {
-    width: 50%;
-  }
-
-  .article-title {
-    text-align: center;
-    width: 70%;
-    margin: 0 auto;
-  }
-
-  .article-img {
-    text-align: center;
-    max-height: 250px;
-    overflow: hidden;
-    object-position: center;
-    margin: 2rem auto;
-  }
-
-  .article-content {
-    max-width: 60%;
-    margin: 0 auto;
-    line-height: 2rem;
-  }
-
-  .article-comment {
-    @include mixins.flex(column, left, left);
-
-    .commit-area {
+    .article-metadata {
       width: 100%;
-      height: 100px;
-      width: 100%;
-      padding: 10px;
-      font-size: 16px;
-      font-family: Arial, sans-serif;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      resize: vertical;
-      outline: none;
-      transition: all 0.3s ease;
-      resize: none;
-
-      &::placeholder {
-        opacity: 0.5;
-      }
-    }
-
-    .signin__cta > a {
-      @include mixins.button(vars.$pr-color, vars.$bg-color, vars.$pr-color);
-      width: 100%;
+      @include mixins.flex(row, center, center);
+      gap: 1rem * 5;
       text-align: center;
-      margin: 1rem 0;
+      margin: 2rem auto 1rem;
+
+      div,
+      a.author {
+        @include mixins.flex(row, space-between, center);
+        gap: 1rem * 0.5;
+        color: vars.$txt-muted;
+        svg {
+          color: vars.$txt-muted;
+        }
+      }
+
+      a.author:hover {
+        text-decoration: underline;
+      }
     }
-    .submit-btn {
-      @include mixins.button(vars.$pr-color, vars.$bg-color, vars.$pr-color);
-      margin: 1rem 0;
-      align-self: flex-end;
-      transition: background-color 0.3s ease;
+    .underline {
+      width: 50%;
+    }
+
+    .article-title {
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    .article-img {
+      max-height: 250px;
+      border-radius: 5px;
+      overflow: hidden;
+      margin: 2rem auto;
+    }
+
+    .article-content {
+      margin: 0 auto;
+      line-height: 2rem;
+    }
+
+    .article-tags {
+      @include mixins.categories;
+    }
+
+    .article-comment {
+      @include mixins.flex(column, left, left);
+      margin: 2rem 0;
+
+      .commit-area {
+        width: 100%;
+        height: 100px;
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        font-family: Arial, sans-serif;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        resize: vertical;
+        outline: none;
+        transition: all 0.3s ease;
+        resize: none;
+
+        &::placeholder {
+          opacity: 0.5;
+        }
+      }
+
+      .signin__cta > a {
+        @include mixins.button(vars.$pr-color, vars.$bg-color, vars.$pr-color);
+        width: 100%;
+        text-align: center;
+        margin: 1rem 0;
+      }
+      .submit-btn {
+        @include mixins.button(vars.$pr-color, vars.$bg-color, vars.$pr-color);
+        margin: 1rem 0;
+        align-self: flex-end;
+        transition: background-color 0.3s ease;
+      }
+
+      .article-comments {
+        margin: 1rem 0;
+
+        & > .section-title {
+          margin: 0;
+        }
+
+        .article-comment {
+          .comment-author {
+            @include mixins.flex(row, start, center);
+            gap: 5px;
+            padding: 0.5rem 0;
+            text-decoration: underline;
+          }
+
+          .comment-actions {
+            @include mixins.flex(row, start, center);
+            gap: 1rem;
+            margin: 1rem 0 1rem 1rem;
+            .comment {
+              cursor: pointer;
+              color: grey;
+
+              &.like {
+              }
+              &.dislike {
+              }
+              &.reply {
+              }
+              &.edit {
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

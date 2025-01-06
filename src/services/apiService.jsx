@@ -19,23 +19,18 @@ export const postReq = async (endpoint, data) => {
   }
 
   try {
-    const response = await axios.post(
-      `${API}${endpoint}`, // Endpoint URL
-      data, // Data (must be second argument)
-      {
-        headers: {
-          // Headers (must be part of the third argument)
-          Authorization: `Bearer ${user.access}`,
-          "Content-Type": "application/json", // Optional but recommended
-        },
-      }
-    );
+    const response = await axios.post(`${API}${endpoint}`, data, {
+      headers: {
+        Authorization: `Bearer ${user.access}`,
+        "Content-Type": "application/json",
+      },
+    });
     return response.data;
   } catch (error) {
     console.error(
       "Post request failed:",
       error.response?.data || error.message
     );
-    throw error; // Re-throw the error for caller to handle
+    throw error;
   }
 };
