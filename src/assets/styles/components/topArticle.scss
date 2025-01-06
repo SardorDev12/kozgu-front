@@ -3,16 +3,31 @@
 @use "../abstracts/vars";
 
 .top-article {
-  padding: 3rem 0;
+  padding-top: 3rem;
 
   .article-content {
-    @include mixins.flex(row, space-between, start);
+    @include mixins.flex(row, space-between, center);
     gap: 1rem * 5;
+    height: 35vh;
+    padding: 1rem;
+    position: relative;
+    border-radius: 5px;
+    border: 5px solid vars.$sc-color;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-top: none;
+    border-right: none;
+    // transition: all 0.3s ease-in-out;
+
+    // &:hover {
+    //   transform: translateY(-5px);
+    //   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    // }
 
     .text-div {
-      flex: 1;
-      min-width: 50%;
+      flex-grow: 1;
+      max-width: 50%;
       @include mixins.flex(column, space-between, start);
+      height: 100%;
 
       .article-title {
         margin: 0 0 0.5rem;
@@ -58,8 +73,10 @@
     }
 
     .image-div {
+      background-color: antiquewhite;
+      width: 50%;
+      height: 100%;
       overflow: hidden;
-      @include mixins.flex(column, center, end);
     }
   }
 }

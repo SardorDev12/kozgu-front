@@ -7,7 +7,6 @@
   position: fixed;
   width: 100%;
   background-color: vars.$bg-color;
-  //   background-color: pink;
   z-index: 2;
   padding: 0 0 1rem;
 
@@ -29,6 +28,8 @@
           );
           min-width: 3rem;
           text-align: center;
+          padding-top: 3px;
+          padding-bottom: 3px;
           &:hover {
             color: vars.$bg-color;
             background-color: color.adjust(

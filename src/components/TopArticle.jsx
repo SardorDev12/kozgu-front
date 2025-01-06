@@ -10,8 +10,8 @@ import { Link, NavLink } from "react-router-dom";
 import SectionTitle from "../components/SectionTitle.jsx";
 
 const TopArticle = () => {
-  const [data, setData] = useState(null); // Set initial state to null
-  const [error, setError] = useState(null); // Error state
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,11 +28,11 @@ const TopArticle = () => {
   }, []);
 
   if (error) {
-    return <div className="error-message">{error}</div>; // Display error message
+    return <div className="error-message">{error}</div>;
   }
 
   if (!data) {
-    return null; // Return null while data is loading or absent
+    return null;
   }
 
   return (
