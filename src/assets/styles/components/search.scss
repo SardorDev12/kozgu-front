@@ -16,6 +16,7 @@
 
     .categories {
       @include mixins.categories;
+      overflow: auto;
     }
 
     .search {
