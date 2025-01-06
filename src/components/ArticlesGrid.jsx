@@ -15,6 +15,7 @@ const ArticlesGrid = ({ amount }) => {
     const fetchData = async () => {
       try {
         const res = await getReq("posts/");
+        console.log(res);
 
         const sortedArticles = res.sort(
           (a, b) => new Date(b.created_at) - new Date(a.created_at)
@@ -44,7 +45,9 @@ const ArticlesGrid = ({ amount }) => {
               to={`/articles/${article.id}`}
             >
               <div className="article-img">
-                <p className="article-category">{article.category}</p>
+                <p className="article-category categ-item">
+                  {article.category}
+                </p>
                 <img src={article.article_pic} alt={article.title} />
               </div>
               <div className="article-cont">
@@ -53,13 +56,13 @@ const ArticlesGrid = ({ amount }) => {
                   {article.content?.substring(0, 200) + "..."}
                 </p>
                 <div className="article-cont__metadata">
-                  <div>
+                  <div className="metadata">
                     <FaCalendar />
                     <p className="published-date">
                       {article.published_at?.substring(0, 10)}
                     </p>
                   </div>
-                  <div>
+                  <div className="metadata">
                     <IoTime />
                     <p className="read-duration">{article.read_time} daqiqa</p>
                   </div>

@@ -3,22 +3,26 @@
 @use "sass:color";
 @use "sass:list";
 .articles-grid {
-  padding-top: 3rem;
+  padding-top: 1rem;
+
   .articles-grid__content {
     @include mixins.grid(4);
     margin-bottom: 2rem;
     gap: 1rem;
 
     .article {
-      @include mixins.flex(column, space-between, start);
+      @include mixins.flex(column, start, start);
       cursor: pointer;
       transition: all 0.3s ease-in-out;
-      padding: 2rem;
-
+      padding: 0.5rem;
       border: 1px solid #e0e0e0;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       border-radius: 8px;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+      border: 3px solid vars.$sc-color;
+      border-top: none;
+      border-right: none;
 
       &:hover {
         transform: translateY(-5px);
@@ -31,17 +35,20 @@
         overflow: hidden;
 
         .article-category {
+          @include mixins.button(vars.$bg-color, vars.$pr-color, vars.$colors);
           position: absolute;
           top: -0.5rem;
           left: 0.5rem;
-          color: red;
-          @include mixins.button(vars.$bg-color, vars.$pr-color, vars.$colors);
-          padding: 2rem 2rem;
+          min-width: 2rem;
+          text-align: center;
+          padding-top: 3px;
+          padding-bottom: 3px;
         }
       }
 
       .article-cont {
         width: 100%;
+        flex-grow: 1;
         @include mixins.flex(column, space-between, start);
 
         .article-cont__title {
@@ -60,10 +67,10 @@
           @include mixins.flex(row, space-between, center);
           margin-top: 2rem;
           gap: 1rem;
-          div {
+          .metadata {
             @include mixins.flex(row, start, center);
             color: vars.$txt-muted;
-            gap: 1rem 0.2;
+            gap: 0.5rem;
             align-items: center;
             font-size: 0.85rem;
           }

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { getReq } from "../services/apiService";
+import "../assets/styles/components/tags.scss";
 
 const Tags = () => {
   const [data, setData] = useState([]);
@@ -17,17 +18,15 @@ const Tags = () => {
   }, []);
 
   return (
-    <div className="container categs-search tags">
-      <ul className="categories">
-        <li className="all categ-item">Barchasi</li>
+    <ul className="container tags">
+      <li className="all categ-item">Barcha teglar</li>
 
-        {data.map((item, index) => (
-          <li className="categ-item" key={index}>
-            #{item.name}
-          </li>
-        ))}
-      </ul>
-    </div>
+      {data.map((item, index) => (
+        <li className="categ-item" key={index}>
+          #{item.name}
+        </li>
+      ))}
+    </ul>
   );
 };
 

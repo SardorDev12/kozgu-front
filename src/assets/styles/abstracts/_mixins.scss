@@ -1,5 +1,6 @@
-@use "sass:color";
 @use "./vars.scss";
+@use "sass:color";
+@use "sass:list";
 
 @mixin flex($direction, $justify, $align) {
   display: flex;
@@ -21,4 +22,38 @@
   border-radius: 5px;
   padding: 8px 16px;
   cursor: pointer;
+}
+
+@mixin categories {
+  @include flex(row, start, center);
+  gap: 1rem;
+
+  @for $i from 1 through list.length(vars.$colors) {
+    .categ-item:nth-child(#{list.length(vars.$colors)}n + #{$i}) {
+      @include button(
+        vars.$bg-color,
+        list.nth(vars.$colors, $i),
+        list.nth(vars.$colors, $i)
+      );
+      min-width: 3rem;
+      text-align: center;
+      padding-top: 3px;
+      padding-bottom: 3px;
+      &:hover {
+        color: vars.$bg-color;
+        background-color: color.adjust(
+          list.nth(vars.$colors, $i),
+          $lightness: -10%
+        );
+      }
+      &:nth-child(1) {
+        background-color: vars.$sc-color;
+        color: vars.$bg-color;
+        border-color: vars.$sc-color;
+        &:hover {
+          background-color: color.adjust(vars.$sc-color, $lightness: -10%);
+        }
+      }
+    }
+  }
 }

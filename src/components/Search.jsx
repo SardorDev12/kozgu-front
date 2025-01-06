@@ -23,7 +23,7 @@ const Search = () => {
     <div className="search-component">
       <div className="container categs-search">
         <ul className="categories">
-          <li className="all categ-item">Barchasi</li>
+          <li className="all categ-item">Barcha turkumlar</li>
           {categories
             .sort((a, b) => {
               if (a.name?.toLowerCase() === "top") return -1;
