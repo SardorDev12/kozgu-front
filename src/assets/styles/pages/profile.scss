@@ -1,0 +1,117 @@
+@use "../abstracts/mixins";
+@use "../abstracts/vars";
+
+.profile-page {
+  padding-top: 2rem;
+  .profile-details {
+    @include mixins.flex(row, space-evenly, start);
+
+    .profile-img {
+      @include mixins.flex(column, space-between, center);
+      gap: 0.5rem;
+      position: relative;
+
+      .profile-img__img {
+        max-width: 15rem;
+        border-radius: 50%;
+        &:hover .middle {
+          opacity: 1;
+        }
+        &:hover img {
+          opacity: 0.3;
+        }
+
+        img {
+          border-radius: 50%;
+          opacity: 1;
+          display: block;
+          overflow: hidden;
+          width: 100%;
+          height: auto;
+          transition: all 0.2s ease-in-out;
+          backface-visibility: hidden;
+        }
+
+        .middle {
+          transition: 0.5s ease;
+          opacity: 0;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          text-align: center;
+
+          button {
+            background-color: vars.$txt-muted;
+            color: white;
+            padding: 0.5rem 1rem;
+            @include mixins.button(
+              vars.$txt-muted,
+              vars.$bg-color,
+              vars.$txt-muted
+            );
+            &:hover {
+              @include mixins.button(
+                vars.$sc-color,
+                vars.$bg-color,
+                vars.$sc-color
+              );
+            }
+          }
+        }
+      }
+
+      .image-action {
+        @include mixins.button(vars.$bg-color, vars.$pr-color, vars.$sc-color);
+        &:hover {
+          @include mixins.button(
+            vars.$sc-color,
+            vars.$bg-color,
+            vars.$sc-color
+          );
+        }
+      }
+    }
+
+    .profile-info {
+      .profile-info__form {
+        div {
+          @include mixins.flex(column, start, start);
+          margin: 1rem 0;
+          .input {
+            @include mixins.flex(row, start, center);
+            gap: 0.5rem;
+          }
+        }
+
+        .profile-bio {
+          textarea {
+            @include mixins.button(
+              vars.$bg-color,
+              vars.$pr-color,
+              vars.$pr-color
+            );
+            padding-left: 0.5rem;
+            width: 20rem;
+            height: 5rem;
+            resize: none;
+          }
+        }
+      }
+    }
+
+    .profile-notifications {
+      .write-article {
+        @include mixins.button(vars.$bg-color, vars.$pr-color, vars.$sc-color);
+
+        &:hover {
+          @include mixins.button(
+            vars.$sc-color,
+            vars.$bg-color,
+            vars.$sc-color
+          );
+        }
+      }
+    }
+  }
+}

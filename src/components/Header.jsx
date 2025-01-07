@@ -45,7 +45,7 @@ const Header = () => {
           </ul>
 
           {currentUser ? (
-            <div className="user-info">
+            <NavLink to={"/profile"} className="user-info">
               <span className="username">
                 <FaUser /> {currentUser?.username}
               </span>
@@ -53,7 +53,7 @@ const Header = () => {
                 className="signout-btn"
                 onClick={() => handleLogout()}
               />
-            </div>
+            </NavLink>
           ) : (
             <Link to={"/login"}>
               <button className="login-btn" type="button">
