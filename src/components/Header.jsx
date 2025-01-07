@@ -6,16 +6,15 @@ import { FaUser } from "react-icons/fa";
 import authService from "../services/authService";
 import { useState, useEffect } from "react";
 import { FaSignOutAlt } from "react-icons/fa";
+import { getProfile } from "../services/apiService";
 
 const Header = () => {
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
     (async () => {
-      const currentUser = await authService.getCurrentUser();
-      if (currentUser) {
-        setCurrentUser(currentUser);
-      }
+      const currentProfile = await getProfile();
+      setCurrentUser(currentProfile);
     })();
   }, []);
 
@@ -45,15 +44,15 @@ const Header = () => {
           </ul>
 
           {currentUser ? (
-            <NavLink to={"/profile"} className="user-info">
-              <span className="username">
-                <FaUser /> {currentUser?.username}
-              </span>
+            <div className="user-info">
+              <div className="profile-pic">
+                <img src={currentUser?.profile_pic_url} alt="" />
+              </div>
               <FaSignOutAlt
                 className="signout-btn"
                 onClick={() => handleLogout()}
               />
-            </NavLink>
+            </div>
           ) : (
             <Link to={"/login"}>
               <button className="login-btn" type="button">

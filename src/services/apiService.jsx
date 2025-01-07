@@ -1,4 +1,5 @@
 import axios from "axios";
+import authService from "../services/authService";
 
 const API = "http://127.0.0.1:8000/api/";
 
@@ -32,5 +33,17 @@ export const postReq = async (endpoint, data) => {
       error.response?.data || error.message
     );
     throw error;
+  }
+};
+
+export const getProfile = async () => {
+  try {
+    const res = await getReq("profiles/");
+    const currentUser = await authService.getCurrentUser();
+    const profileData = res.find((item) => item.user === currentUser.id);
+
+    return profileData;
+  } catch (error) {
+    console.log(error);
   }
 };

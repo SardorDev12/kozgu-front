@@ -2,12 +2,11 @@ import { useEffect, useState } from "react";
 import "../assets/styles/pages/profile.scss";
 
 // Components
-import { getReq } from "../services/apiService";
-import authService from "../services/authService";
+import { getProfile } from "../services/apiService";
 import { FaSave } from "react-icons/fa";
 
 const Profile = () => {
-  const [profile, setProfile] = useState(undefined);
+  const [profile, setProfile] = useState(null);
   const [formData, setFormData] = useState({
     user: "",
     bio: "",
@@ -25,10 +24,7 @@ const Profile = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await getReq("profiles/");
-        const currentUser = await authService.getCurrentUser();
-        const profileData = res.find((item) => item.user === currentUser.id);
-
+        const profileData = await getProfile();
         if (profileData) {
           setProfile(profileData);
           setFormData({
@@ -54,7 +50,7 @@ const Profile = () => {
         <div className="profile-img">
           <div className="profile-img__img">
             <img src={profile?.profile_pic_url} alt="" />
-            <div class="middle">
+            <div className="middle">
               <button type="button">UPDATE</button>
             </div>
           </div>

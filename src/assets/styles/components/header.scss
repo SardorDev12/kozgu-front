@@ -52,6 +52,15 @@
       @include mixins.flex(row, space-between, center);
       gap: 1rem * 0.5;
 
+      .profile-pic {
+        @include mixins.flex(row, center, center);
+        width: 2.5rem;
+        img {
+          border-radius: 50%;
+          overflow: hidden;
+        }
+      }
+
       .signout-btn {
         color: darkred;
         cursor: pointer;
