@@ -6,6 +6,7 @@ import Register from "./pages/Register";
 import Article from "./pages/Article";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
+import Write from "./pages/Write";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
 
         <Route element={<GlobalLayout />}>
           <Route path="/" element={<Home />} />
+          <Route path="/write" element={<Write />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/articles/:id" element={<Article />} />
         </Route>

@@ -10,6 +10,7 @@ import { getProfile } from "../services/apiService";
 import { FaHouseUser } from "react-icons/fa6";
 import { IoHome } from "react-icons/io5";
 import { IoCloseCircle } from "react-icons/io5";
+import { PiPenFill } from "react-icons/pi";
 
 const Header = () => {
   const [currentUser, setCurrentUser] = useState(null);
@@ -59,16 +60,15 @@ const Header = () => {
         </div>
         <nav className="navbar">
           <ul className="items">
-            <li>
-              <NavLink className={"nav-item"} to="/">
-                Bosh sahifa
-              </NavLink>
-            </li>
-            <li>
-              <NavLink className={"nav-item"} to="/articles">
-                Maqolalar
-              </NavLink>
-            </li>
+            <NavLink className={"nav-item"} to="/">
+              Bosh sahifa
+            </NavLink>
+            <NavLink className={"nav-item"} to="/articles">
+              Maqolalar
+            </NavLink>
+            <NavLink className={"nav-item write-page__btn"} to="/write">
+              Maqola yozish
+            </NavLink>
           </ul>
 
           {currentUser ? (
@@ -109,6 +109,14 @@ const Header = () => {
                     >
                       <FaHouseUser className="my-profile__icon" />
                       Sahifam
+                    </NavLink>
+                    <NavLink
+                      to="/write"
+                      onClick={closeModal}
+                      className="menu-item my-profile"
+                    >
+                      <PiPenFill className="my-profile__icon" />
+                      Maqola yozish
                     </NavLink>
                     <NavLink
                       onClick={() => handleLogout()}
