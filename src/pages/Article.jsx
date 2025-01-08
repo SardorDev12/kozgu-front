@@ -7,16 +7,17 @@ import { useParams } from "react-router-dom";
 import { FaPencil } from "react-icons/fa6";
 import { FaCalendar } from "react-icons/fa";
 import { IoTime } from "react-icons/io5";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import authService from "../services/authService";
 import { FaUser } from "react-icons/fa";
 import { AiFillLike } from "react-icons/ai";
 import { AiFillDislike } from "react-icons/ai";
 import { FaReply } from "react-icons/fa";
 import { MdEdit } from "react-icons/md";
+import { IoIosArrowBack } from "react-icons/io";
 
 const Article = () => {
-  const location = useLocation();
+  const navigate = useNavigate();
   const { id } = useParams();
   const [article, setArticle] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -98,6 +99,10 @@ const Article = () => {
 
   return (
     <div className="container article-page">
+      <p type="button" className="back-btn" onClick={() => navigate(-1)}>
+        <IoIosArrowBack />
+        <span>Orqaga</span>
+      </p>
       <div className="detailed_article">
         <div className="article-metadata">
           <NavLink to="/author/" className="author" title="Author Page">
@@ -151,9 +156,7 @@ const Article = () => {
             </>
           ) : (
             <div className="signin__cta">
-              <NavLink to="/login/" state={{ from: location.pathname }}>
-                Sign in to comment
-              </NavLink>
+              <NavLink to="/login/">Sign in to comment</NavLink>
             </div>
           )}
           {commentError ? (

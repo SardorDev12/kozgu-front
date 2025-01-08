@@ -4,6 +4,14 @@
 @use "sass:list";
 
 .article-page {
+  .back-btn {
+    @include mixins.flex(row, start, center);
+    cursor: pointer;
+
+    &:hover {
+      color: vars.$txt-muted;
+    }
+  }
   .detailed_article {
     padding: 0 15rem;
 

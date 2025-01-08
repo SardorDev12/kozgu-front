@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import authService from "../services/authService";
-import { useNavigate } from "react-router-dom";
 import pageImg from "../assets/images/login-img.png";
 import "../assets/styles/components/login-register.scss";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const API = "http://127.0.0.1:8000/api/";
 
@@ -16,7 +15,8 @@ const Login = () => {
     e.preventDefault();
     try {
       await authService.login(username, password);
-      navigate("/");
+
+      navigate(-1);
     } catch (error) {
       alert("Login failed");
     }
