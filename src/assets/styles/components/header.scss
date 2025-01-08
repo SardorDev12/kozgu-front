@@ -41,16 +41,14 @@
 
           &.write-page__btn {
             @include mixins.button(
+              vars.$sc-color,
               vars.$bg-color,
-              vars.$pr-color,
-              vars.$pr-color
+              vars.$sc-color
             );
             padding: 0.2rem 1rem;
             margin: 0;
             &:hover {
-              background-color: vars.$sc-color;
-              border-color: vars.$sc-color;
-              color: vars.$bg-color;
+              background-color: color.adjust(vars.$sc-color, $lightness: -10%);
             }
           }
         }
