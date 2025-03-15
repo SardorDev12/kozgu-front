@@ -27,7 +27,7 @@ const Article = () => {
 
   const [comments, setComments] = useState(null);
   const [commentError, setCommentError] = useState(false);
-
+  console.log(article);
   const handleSubmitComment = async () => {
     if (!comment || !currentUser) {
       setCommentError("Comment cannot be empty and user must be logged in.");
